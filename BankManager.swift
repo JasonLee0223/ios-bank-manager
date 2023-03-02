@@ -34,20 +34,13 @@ struct BankManager {
     }
     
     private static func beginWork() {
-        let teller = Teller()
-        teller.identifier = "Teller1"
+        let tellers = assignTellers()
+        
         let totalCustomCount = Int.random(in: Requirement.CustomerCount.minimum...Requirement.CustomerCount.maxmimum)
         let totalSpend = calculate(spend: totalCustomCount)
-
-        for customNumber in Requirement.CustomerCount.defaultCustomer...totalCustomCount {
-            OutputMessage.work(start: customNumber)
-            
-            teller.working(responsibility: customNumber)
-            Thread.sleep(forTimeInterval: Requirement.leadTime)
-            
-            guard let finishCustomNumber = teller.finishing() else { return }
-            
-            OutputMessage.work(finish: finishCustomNumber)
+        
+        for _ in Requirement.CustomerCount.defaultCustomer...totalCustomCount {
+            //TODO: - async process
         }
 
         OutputMessage.todayWorkDeadline(customer: totalCustomCount, leadTime: totalSpend)
@@ -58,7 +51,7 @@ struct BankManager {
         numberFormatter.roundingMode = .halfUp
         numberFormatter.maximumSignificantDigits = 4
         
-        let totalLeadTime = Requirement.leadTime * Double(toalCount)
+        let totalLeadTime = Requirement.LeadTime.deposit * Double(toalCount)
         
         guard let totalSpend = numberFormatter.string(for: totalLeadTime) else {
             return Errors.failOfFormatToString.localizedDescription
@@ -66,4 +59,16 @@ struct BankManager {
         
         return totalSpend
     }
+    
+    private static func assignTellers() -> [Teller] {
+        let workTypeList = [Requirement.WorkType.deposit, Requirement.WorkType.deposit, Requirement.WorkType.loan].shuffled()
+        var tellers = [Teller]()
+        
+        for index in 0...2 {
+            let workType = workTypeList[index]
+            tellers.append(Teller(identifier: workType.rawValue))
+        }
+        return tellers
+    }
+    
 }
