@@ -15,12 +15,12 @@ enum OutputMessage: String, CustomStringConvertible {
         return self.rawValue
     }
     
-    static func work(start waitNumber: Int) {
-        print("\(waitNumber)번 고객 업무 시작")
+    static func work(start waitNumber: Int, type: Requirement.WorkType) {
+        print("\(waitNumber)번 고객 \(type)업무 시작")
     }
     
-    static func work(finish customNumber: Int) {
-        print("\(customNumber)번 고객 업무 완료")
+    static func work(finish customNumber: Int, type: Requirement.WorkType) {
+        print("\(customNumber)번 고객 \(type)업무 완료")
     }
     
     static func todayWorkDeadline(customer: Int, leadTime: String) {
