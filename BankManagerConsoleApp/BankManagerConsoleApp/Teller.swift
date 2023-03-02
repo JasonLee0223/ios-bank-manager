@@ -8,7 +8,11 @@
 import Foundation
 
 final class Teller: Workable {
-    var identifier: String = ""
+    var identifier: String
+    
+    init(identifier: String) {
+        self.identifier = identifier
+    }
     private(set) var customerQueue = Queue<Int>()
     
     func working(responsibility: Int) {
