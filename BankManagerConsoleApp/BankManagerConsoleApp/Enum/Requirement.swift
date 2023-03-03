@@ -18,13 +18,13 @@ enum Requirement {
         static let loan: Double = 1.1
         static let deposit: Double = 0.7
     }
+}
+
+enum WorkType: String, CustomStringConvertible {
+    case loan = "대출"
+    case deposit = "예금"
     
-    enum WorkType: String, CustomStringConvertible {
-        case loan = "대출"
-        case deposit = "예금"
-        
-        var description: String {
-            return self.rawValue
-        }
+    var description: String {
+        return self.rawValue
     }
 }
