@@ -9,6 +9,6 @@ import Foundation
 
 protocol Workable {
     var identifier: String { get }
-    func working(responsibility: Int)
+    func working(responsibility: String, at orderNumber: Int)
     func finishing() -> Int?
 }
