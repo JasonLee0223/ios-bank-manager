@@ -15,11 +15,11 @@ enum OutputMessage: String, CustomStringConvertible {
         return self.rawValue
     }
     
-    static func work(start waitNumber: Int, type: Requirement.WorkType) {
+    static func work(start waitNumber: Int, type: String) {
         print("\(waitNumber)번 고객 \(type)업무 시작")
     }
     
-    static func work(finish customNumber: Int, type: Requirement.WorkType) {
+    static func work(finish customNumber: Int, type: String) {
         print("\(customNumber)번 고객 \(type)업무 완료")
     }
     
