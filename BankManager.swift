@@ -35,9 +35,11 @@ struct BankManager {
     
     private static func beginWork() {
         let tellers = assignTellers()
-        let totalCustomCount = makeRandomCustomCount()
+        let totalCustomCount = generateRandomCustomerCount()
         var depositCustomCount = 0
         var loanCustomCount = 0
+        
+        
         
         let work = DispatchWorkItem {
             for customNumber in Requirement.CustomerCount.defaultCustomer...totalCustomCount {
@@ -99,7 +101,7 @@ extension BankManager {
         }
     }
     
-    private static func makeRandomCustomCount() -> Int {
+    private static func generateRandomCustomerCount() -> Int {
         return Int.random(in: Requirement.CustomerCount.minimum...Requirement.CustomerCount.maxmimum)
     }
 }
