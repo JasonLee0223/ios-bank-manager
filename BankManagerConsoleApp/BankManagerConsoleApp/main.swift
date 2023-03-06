@@ -6,4 +6,4 @@
 
 import Foundation
 
-BankManager.startProcess()
+BankManager().startProcess()
