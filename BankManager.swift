@@ -7,7 +7,7 @@
 import Foundation
 
 struct BankManager {
-    func startProcess() {
+    static func startProcess() {
         var isContinue = true
         
         repeat {
@@ -33,7 +33,7 @@ struct BankManager {
         } while isContinue
     }
     
-    private func beginWork() {
+    private static func beginWork() {
         let tellers = assignTellers()
         let totalCustomCount = generateRandomCustomerCount()
         var depositCustomCount = 0
@@ -65,7 +65,7 @@ struct BankManager {
 
 //MARK: - Side Product
 extension BankManager {
-    private func calculateToLeadTimeBetween(_ depositCustomCount: Int, and loanCustomCount: Int) -> String {
+    private static func calculateToLeadTimeBetween(_ depositCustomCount: Int, and loanCustomCount: Int) -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.roundingMode = .halfUp
         numberFormatter.maximumSignificantDigits = 4
@@ -79,7 +79,7 @@ extension BankManager {
         return totalSpend
     }
     
-    private func assignTellers() -> [Teller] {
+    private static func assignTellers() -> [Teller] {
         let workTypeList = [WorkType.deposit, WorkType.deposit, WorkType.loan].shuffled()
         var tellers = [Teller]()
         
@@ -90,7 +90,7 @@ extension BankManager {
         return tellers
     }
     
-    private func determineIdentifier(work type: String) -> String {
+    private static func determineIdentifier(work type: String) -> String {
         switch WorkType(rawValue: type) {
         case .loan:
             return WorkType.loan.description
@@ -101,14 +101,14 @@ extension BankManager {
         }
     }
     
-    private func generateRandomCustomerCount() -> Int {
+    private static func generateRandomCustomerCount() -> Int {
         return Int.random(in: Requirement.CustomerCount.minimum...Requirement.CustomerCount.maxmimum)
     }
 }
 
 //MARK: - DispatchQueue Method
 extension BankManager {
-    private func dispatchWorkQueue(teller: Teller, customNumber: Int) {
+    private static func dispatchWorkQueue(teller: Teller, customNumber: Int) {
         let workQueue = DispatchQueue(label: "workQueue", attributes: .concurrent)
         let workGroup = DispatchGroup()
         let depositSemaphore = DispatchSemaphore(value: 2)
@@ -134,7 +134,7 @@ extension BankManager {
         workGroup.leave()
     }
     
-    private func asyncProcess(_ customNumber: Int, _ teller: Teller) {
+    private static func asyncProcess(_ customNumber: Int, _ teller: Teller) {
         let bankProduct = determineIdentifier(work: teller.identifier)
         
         OutputMessage.work(start: customNumber, type: bankProduct)
