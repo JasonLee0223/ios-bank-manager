@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B943F4929B6F7CF00859FA7 /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B943F4829B6F7CF00859FA7 /* Generator.swift */; };
+		5B943F4B29B6FA8B00859FA7 /* AsyncProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B943F4A29B6FA8B00859FA7 /* AsyncProcess.swift */; };
 		5BE473D929A7494F00F3A58E /* WorkList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE473D829A7494F00F3A58E /* WorkList.swift */; };
 		5BE473DB29A7496900F3A58E /* Requirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE473DA29A7496900F3A58E /* Requirement.swift */; };
 		5BE473E129A752ED00F3A58E /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE473E029A752ED00F3A58E /* Errors.swift */; };
@@ -44,6 +46,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5B943F4829B6F7CF00859FA7 /* Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
+		5B943F4A29B6FA8B00859FA7 /* AsyncProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncProcess.swift; sourceTree = "<group>"; };
 		5BE473D829A7494F00F3A58E /* WorkList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkList.swift; sourceTree = "<group>"; };
 		5BE473DA29A7496900F3A58E /* Requirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requirement.swift; sourceTree = "<group>"; };
 		5BE473E029A752ED00F3A58E /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -139,6 +143,8 @@
 				C7694E79259C3EC00053667F /* main.swift */,
 				C7D65D1A259C8190005510E0 /* BankManager.swift */,
 				5BEBEF8E29A72EFE00EBBC6E /* Teller.swift */,
+				5B943F4829B6F7CF00859FA7 /* Generator.swift */,
+				5B943F4A29B6FA8B00859FA7 /* AsyncProcess.swift */,
 				5BE473DD29A7498900F3A58E /* Protocol */,
 				5BE473DC29A7497F00F3A58E /* Enum */,
 				5BE473DE29A749B900F3A58E /* DataStructure */,
@@ -261,7 +267,9 @@
 				5BEBEF8A29A7235900EBBC6E /* OutputMessage.swift in Sources */,
 				C7D65D1B259C8190005510E0 /* BankManager.swift in Sources */,
 				5BEBEF8D29A72B7600EBBC6E /* Workable.swift in Sources */,
+				5B943F4929B6F7CF00859FA7 /* Generator.swift in Sources */,
 				5BE473E129A752ED00F3A58E /* Errors.swift in Sources */,
+				5B943F4B29B6FA8B00859FA7 /* AsyncProcess.swift in Sources */,
 				5BEBEF8F29A72EFE00EBBC6E /* Teller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
