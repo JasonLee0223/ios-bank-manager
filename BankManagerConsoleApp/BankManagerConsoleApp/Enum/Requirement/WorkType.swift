@@ -14,4 +14,13 @@ enum WorkType: String, CustomStringConvertible {
     var description: String {
         return self.rawValue
     }
+    
+    var leadTime: Double {
+        switch self {
+        case .deposit:
+            return 0.7
+        case .loan:
+            return 1.1
+        }
+    }
 }
