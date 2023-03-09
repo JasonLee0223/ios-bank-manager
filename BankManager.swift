@@ -7,7 +7,7 @@
 import Foundation
 
 struct BankManager {
-    static func startProcess() {
+    func startProcess() {
         var isContinue = true
         
         repeat {
@@ -33,7 +33,7 @@ struct BankManager {
         } while isContinue
     }
     
-    private static func beginWork() {
+    private func beginWork() {
         let teller = Teller()
         teller.identifier = "Teller1"
         let totalCustomCount = Int.random(in: Requirement.CustomerCount.minimum...Requirement.CustomerCount.maxmimum)
@@ -53,7 +53,7 @@ struct BankManager {
         OutputMessage.todayWorkDeadline(customer: totalCustomCount, leadTime: totalSpend)
     }
     
-    private static func calculate(spend toalCount: Int) -> String {
+    private func calculate(spend toalCount: Int) -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.roundingMode = .halfUp
         numberFormatter.maximumSignificantDigits = 4
