@@ -6,31 +6,23 @@
 
 import Foundation
 
-struct BankManager {
+struct BankManager: Receivable {
     func startProcess() {
-        var isContinue = true
+        let inputStatus = receiveUserInput
         
-        repeat {
-            print(OutputMessage.menu)
-            
-            guard let userInput = readLine() else { return }
-            
-            guard userInput == WorkList.openBank.rawValue || userInput == WorkList.closeBank.rawValue else {
-                print(Errors.invalidUserInput.localizedDescription)
-                return
-            }
-            
-            switch WorkList(rawValue: userInput) {
-            case .openBank:
-                OutputMessage.conform(userInput)
-                beginWork()
-            case .closeBank:
-                OutputMessage.conform(userInput)
-                isContinue = false
-            default:
-                return
-            }
-        } while isContinue
+        OutputMessage.startMessage()
+        
+        switch WorkList(rawValue: inputStatus) {
+        case .openBank:
+            OutputMessage.conform(inputStatus)
+            beginWork()
+            return startProcess()
+        case .closeBank:
+            OutputMessage.conform(inputStatus)
+            break
+        default:
+            return
+        }
     }
     
     private func beginWork() {
