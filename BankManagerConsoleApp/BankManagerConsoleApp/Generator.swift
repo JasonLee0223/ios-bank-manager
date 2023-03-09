@@ -12,9 +12,8 @@ struct Generator {
         let workTypeList = [WorkType.deposit, WorkType.deposit, WorkType.loan].shuffled()
         var tellers = [Teller]()
         
-        for index in 0...2 {
-            let workType = workTypeList[index]
-            tellers.append(Teller(identifier: workType))
+        workTypeList.forEach { workType in
+            tellers.append(workType)
         }
         return tellers
     }
