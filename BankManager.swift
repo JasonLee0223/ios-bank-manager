@@ -7,6 +7,8 @@
 import Foundation
 
 struct BankManager: Receivable {
+    
+    //MARK: - Caller
     func startProcess() {
         let inputStatus = receiveUserInput
         
@@ -23,37 +25,31 @@ struct BankManager: Receivable {
         }
     }
     
+    //MARK: - Callee
     private func openBank() {
-        let teller = Teller()
-        teller.identifier = "Teller1"
-        let totalCustomCount = Int.random(in: Requirement.CustomerCount.minimum...Requirement.CustomerCount.maxmimum)
-        let totalSpend = calculate(spend: totalCustomCount)
+        let generator = Generator()
+        let asyncProcessor = AsyncProcess()
+        let tellers = generator.assignTellers()
+        let totalVisitCustomer = generator.randomCustomerCount()
 
-        for customNumber in Requirement.CustomerCount.defaultCustomer...totalCustomCount {
-            OutputMessage.work(start: customNumber)
-            
-            teller.working(responsibility: customNumber)
-            Thread.sleep(forTimeInterval: Requirement.leadTime)
-            
-            guard let finishCustomNumber = teller.finishing() else { return }
-            
-            OutputMessage.work(finish: finishCustomNumber)
-        }
-
-        OutputMessage.todayWorkDeadline(customer: totalCustomCount, leadTime: totalSpend)
+        asyncProcessor.topOfTop(tellers, totalVisitCustomer)
+        
+        //TODO: - 업무 완료 메세지 출력
+        print("끝남")
     }
     
     private func calculate(spend toalCount: Int) -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.roundingMode = .halfUp
-        numberFormatter.maximumSignificantDigits = 4
-        
-        let totalLeadTime = Requirement.leadTime * Double(toalCount)
-        
-        guard let totalSpend = numberFormatter.string(for: totalLeadTime) else {
-            return Errors.failOfFormatToString.localizedDescription
-        }
-        
-        return totalSpend
+        //        let numberFormatter = NumberFormatter()
+        //        numberFormatter.roundingMode = .halfUp
+        //        numberFormatter.maximumSignificantDigits = 4
+        //
+        //        let totalLeadTime = Requirement.leadTime * Double(toalCount)
+        //
+        //        guard let totalSpend = numberFormatter.string(for: totalLeadTime) else {
+        //            return Errors.failOfFormatToString.localizedDescription
+        //        }
+        //
+        //        return totalSpend
+        return ""
     }
 }
