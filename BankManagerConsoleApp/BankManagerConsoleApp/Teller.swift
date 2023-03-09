@@ -7,33 +7,23 @@
 
 import Foundation
 
-final class Teller: Workable {
-    private(set) var customerQueue = Queue<WorkType>()
+struct Teller: Workable {
     var identifier: WorkType
     
     init(identifier: WorkType) {
         self.identifier = identifier
     }
-
     
-    func working(responsibility: WorkType) {
-        customerQueue.euqueue(responsibility)
-        spendTime(at: responsibility)
-    }
-    
-    func finishing() -> Bool {
-        guard let finishCustomNumber = customerQueue.dequeue() else { return false }
-        return false
-    }
-    
-    private func spendTime(at identifier: WorkType) {
+    func spendTime(of customer: Customer) {
         switch identifier {
-
-
         case .deposit:
+            OutputMessage.presentRequestStarted(of: customer)
             Thread.sleep(forTimeInterval: WorkType.deposit.leadTime)
+            OutputMessage.presentResponseFinish(of: customer)
         case .loan:
+            OutputMessage.presentRequestStarted(of: customer)
             Thread.sleep(forTimeInterval: WorkType.loan.leadTime)
+            OutputMessage.presentResponseFinish(of: customer)
         }
     }
 }
