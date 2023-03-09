@@ -8,6 +8,7 @@
 import Foundation
 
 enum Errors: LocalizedError {
+    case notReceive
     case invalidUserInput
     case failOfFormatToString
     
