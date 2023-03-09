@@ -8,7 +8,7 @@
 import Foundation
 
 protocol Workable {
-    var identifier: String { get }
-    func working(responsibility: Int)
-    func finishing() -> Int?
+    var identifier: WorkType { get }
+    func working(responsibility: WorkType)
+    func finishing() -> Bool
 }
