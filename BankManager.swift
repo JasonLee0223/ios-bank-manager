@@ -13,7 +13,7 @@ struct BankManager: Receivable {
         switch WorkList(rawValue: inputStatus) {
         case .openBank:
             OutputMessage.conform(inputStatus)
-            beginWork()
+            openBank()
             return startProcess()
         case .closeBank:
             OutputMessage.conform(inputStatus)
@@ -23,7 +23,7 @@ struct BankManager: Receivable {
         }
     }
     
-    private func beginWork() {
+    private func openBank() {
         let teller = Teller()
         teller.identifier = "Teller1"
         let totalCustomCount = Int.random(in: Requirement.CustomerCount.minimum...Requirement.CustomerCount.maxmimum)
