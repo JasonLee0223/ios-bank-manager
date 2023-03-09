@@ -17,6 +17,9 @@ final class AsyncProcess {
         let workGroup = DispatchGroup()
         let workQueue = DispatchQueue(label: "workQueue", attributes: .concurrent)
         
+        var depositCustomerCount = 0
+        var loanCustomerCount = 0
+        
         //TODO: - 고객 대기열 생성 - async & enqueue
         makeCustomerQueue(of: totalVisitCustomer)
         
@@ -25,10 +28,21 @@ final class AsyncProcess {
             workQueue.async(group: workGroup) {
                 while !self.customerQueue.isEmpty {
                     self.work(start: teller)
+                    
+                    switch teller.identifier {
+                    case .deposit:
+                        depositCustomerCount += 1
+                    case .loan:
+                        loanCustomerCount += 1
+                    }
                 }
             }
         }
         workGroup.wait()
+        
+        //TODO: - 업무 완료 메세지 출력
+        let totalSpendTime = calculateToLeadTimeBetween(depositCustomerCount, and: loanCustomerCount)
+        OutputMessage.todayWorkDeadline(customer: totalVisitCustomer, leadTime: totalSpendTime)
     }
     
     //MARK: - 고객 명단 생성
@@ -71,5 +85,20 @@ final class AsyncProcess {
             teller.spendTime(of: finishCustomer)
             loanSemaphore.signal()
         }
+    }
+    
+    //MARK: - 총 소요시간 계산
+    private func calculateToLeadTimeBetween(_ depositCustomCount: Int, and loanCustomCount: Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.roundingMode = .halfUp
+        numberFormatter.maximumSignificantDigits = 4
+        
+        let totalLeadTime = WorkType.deposit.leadTime * Double(depositCustomCount) + WorkType.loan.leadTime * Double(loanCustomCount)
+        
+        guard let totalSpend = numberFormatter.string(for: totalLeadTime) else {
+            return Errors.failOfFormatToString.localizedDescription
+        }
+        
+        return totalSpend
     }
 }

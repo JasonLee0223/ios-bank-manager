@@ -33,23 +33,5 @@ struct BankManager: Receivable {
         let totalVisitCustomer = generator.randomCustomerCount()
 
         asyncProcessor.topOfTop(tellers, totalVisitCustomer)
-        
-        //TODO: - 업무 완료 메세지 출력
-        print("끝남")
-    }
-    
-    private func calculate(spend toalCount: Int) -> String {
-        //        let numberFormatter = NumberFormatter()
-        //        numberFormatter.roundingMode = .halfUp
-        //        numberFormatter.maximumSignificantDigits = 4
-        //
-        //        let totalLeadTime = Requirement.leadTime * Double(toalCount)
-        //
-        //        guard let totalSpend = numberFormatter.string(for: totalLeadTime) else {
-        //            return Errors.failOfFormatToString.localizedDescription
-        //        }
-        //
-        //        return totalSpend
-        return ""
     }
 }
