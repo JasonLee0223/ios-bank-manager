@@ -9,6 +9,4 @@ import Foundation
 
 protocol Workable {
     var identifier: WorkType { get }
-    func working(responsibility: WorkType)
-    func finishing() -> Bool
 }
