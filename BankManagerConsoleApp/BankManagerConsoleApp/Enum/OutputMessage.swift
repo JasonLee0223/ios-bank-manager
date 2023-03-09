@@ -7,12 +7,12 @@
 
 import Foundation
 
-enum OutputMessage: String, CustomStringConvertible {
+enum OutputMessage: String {
     
     case menu = "1 : 은행 개점 \n2 : 종료"
     
-    var description: String {
-        return self.rawValue
+    static func startMessage() {
+        print(menu.rawValue)
     }
     
     static func work(start waitNumber: Int) {
