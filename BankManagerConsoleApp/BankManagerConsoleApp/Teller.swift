@@ -8,15 +8,32 @@
 import Foundation
 
 final class Teller: Workable {
-    var identifier: String = ""
-    private(set) var customerQueue = Queue<Int>()
+    private(set) var customerQueue = Queue<WorkType>()
+    var identifier: WorkType
     
-    func working(responsibility: Int) {
+    init(identifier: WorkType) {
+        self.identifier = identifier
+    }
+
+    
+    func working(responsibility: WorkType) {
         customerQueue.euqueue(responsibility)
+        spendTime(at: responsibility)
     }
     
-    func finishing() -> Int? {
-        guard let finishCustomNumber = customerQueue.dequeue() else { return nil }
-        return finishCustomNumber
+    func finishing() -> Bool {
+        guard let finishCustomNumber = customerQueue.dequeue() else { return false }
+        return false
+    }
+    
+    private func spendTime(at identifier: WorkType) {
+        switch identifier {
+
+
+        case .deposit:
+            Thread.sleep(forTimeInterval: WorkType.deposit.leadTime)
+        case .loan:
+            Thread.sleep(forTimeInterval: WorkType.loan.leadTime)
+        }
     }
 }
