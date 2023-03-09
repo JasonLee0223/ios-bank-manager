@@ -85,15 +85,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B943F5929B9ABEE00859FA7 /* Requirement */ = {
+			isa = PBXGroup;
+			children = (
+				5BE473D829A7494F00F3A58E /* WorkList.swift */,
+				5B943F5629B9AB9800859FA7 /* WorkType.swift */,
+				5B943F5429B9AB8000859FA7 /* LeadTime.swift */,
+				5B943F5229B9AB6F00859FA7 /* CustomCount.swift */,
+				5BEBEF8929A7235900EBBC6E /* OutputMessage.swift */,
+			);
+			path = Requirement;
+			sourceTree = "<group>";
+		};
 		5BE473DC29A7497F00F3A58E /* Enum */ = {
 			isa = PBXGroup;
 			children = (
 				5BE473E029A752ED00F3A58E /* Errors.swift */,
-				5BEBEF8929A7235900EBBC6E /* OutputMessage.swift */,
-				5BE473D829A7494F00F3A58E /* WorkList.swift */,
-				5B943F5229B9AB6F00859FA7 /* CustomCount.swift */,
-				5B943F5429B9AB8000859FA7 /* LeadTime.swift */,
-				5B943F5629B9AB9800859FA7 /* WorkType.swift */,
+				5B943F5929B9ABEE00859FA7 /* Requirement */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
