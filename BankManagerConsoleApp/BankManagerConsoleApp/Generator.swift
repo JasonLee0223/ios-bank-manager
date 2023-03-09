@@ -13,7 +13,7 @@ struct Generator {
         var tellers = [Teller]()
         
         workTypeList.forEach { workType in
-            tellers.append(workType)
+            tellers.append(Teller(identifier: workType))
         }
         return tellers
     }
