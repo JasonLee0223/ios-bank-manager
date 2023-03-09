@@ -15,12 +15,12 @@ enum OutputMessage: String {
         print(menu.rawValue)
     }
     
-    static func work(start waitNumber: Int) {
-        print("\(waitNumber)번 고객 업무 시작")
+    static func presentRequestStarted(of customer: Customer) {
+        print("\(customer.waitingNumber)번 고객 \(customer.workType)업무 시작")
     }
     
-    static func work(finish customNumber: Int) {
-        print("\(customNumber)번 고객 업무 완료")
+    static func presentResponseFinish(of customer: Customer) {
+        print("\(customer.waitingNumber)번 고객 \(customer.workType)업무 완료")
     }
     
     static func todayWorkDeadline(customer: Int, leadTime: String) {
