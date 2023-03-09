@@ -10,8 +10,6 @@ struct BankManager: Receivable {
     func startProcess() {
         let inputStatus = receiveUserInput
         
-        OutputMessage.startMessage()
-        
         switch WorkList(rawValue: inputStatus) {
         case .openBank:
             OutputMessage.conform(inputStatus)

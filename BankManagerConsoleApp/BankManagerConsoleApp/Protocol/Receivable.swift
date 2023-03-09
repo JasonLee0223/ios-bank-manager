@@ -13,6 +13,7 @@ protocol Receivable {
 
 extension Receivable {
     var receiveUserInput: String {
+        OutputMessage.startMessage()
         guard let userInput = readLine() else {
             return Errors.notReceive.localizedDescription
         }
