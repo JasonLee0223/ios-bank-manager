@@ -12,6 +12,7 @@
 		5B943F5329B9AB6F00859FA7 /* CustomCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B943F5229B9AB6F00859FA7 /* CustomCount.swift */; };
 		5B943F5729B9AB9800859FA7 /* WorkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B943F5629B9AB9800859FA7 /* WorkType.swift */; };
 		5B943F5B29B9B35400859FA7 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B943F5A29B9B35400859FA7 /* Customer.swift */; };
+		5B943F5D29B9B4FE00859FA7 /* AsyncProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B943F5C29B9B4FE00859FA7 /* AsyncProcess.swift */; };
 		5BE473D929A7494F00F3A58E /* WorkList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE473D829A7494F00F3A58E /* WorkList.swift */; };
 		5BE473E129A752ED00F3A58E /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE473E029A752ED00F3A58E /* Errors.swift */; };
 		5BEBEF8A29A7235900EBBC6E /* OutputMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBEF8929A7235900EBBC6E /* OutputMessage.swift */; };
@@ -22,12 +23,10 @@
 		5BFB003129A4864F00EE9F4D /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60BCCC29A4541C00595FA2 /* Node.swift */; };
 		5BFB003229A4865100EE9F4D /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFB001529A454B500EE9F4D /* LinkedList.swift */; };
 		5BFB003329A4865300EE9F4D /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60BCCE29A4793500595FA2 /* Queue.swift */; };
-		8E03D3BC29A8536A00CF7BF5 /* BankManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D65D1A259C8190005510E0 /* BankManager.swift */; };
 		8E03D3BD29A8537D00CF7BF5 /* OutputMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBEF8929A7235900EBBC6E /* OutputMessage.swift */; };
 		8E03D3BE29A8538300CF7BF5 /* Workable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBEF8C29A72B7600EBBC6E /* Workable.swift */; };
 		8E03D3BF29A8538500CF7BF5 /* WorkList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE473D829A7494F00F3A58E /* WorkList.swift */; };
 		8E03D3C129A8538C00CF7BF5 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE473E029A752ED00F3A58E /* Errors.swift */; };
-		8E03D3C229A8539100CF7BF5 /* Teller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBEF8E29A72EFE00EBBC6E /* Teller.swift */; };
 		8E60BCCD29A4541C00595FA2 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60BCCC29A4541C00595FA2 /* Node.swift */; };
 		8E60BCCF29A4793500595FA2 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60BCCE29A4793500595FA2 /* Queue.swift */; };
 		C7694E7A259C3EC00053667F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7694E79259C3EC00053667F /* main.swift */; };
@@ -52,6 +51,7 @@
 		5B943F5229B9AB6F00859FA7 /* CustomCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCount.swift; sourceTree = "<group>"; };
 		5B943F5629B9AB9800859FA7 /* WorkType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkType.swift; sourceTree = "<group>"; };
 		5B943F5A29B9B35400859FA7 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		5B943F5C29B9B4FE00859FA7 /* AsyncProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncProcess.swift; sourceTree = "<group>"; };
 		5BE473D829A7494F00F3A58E /* WorkList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkList.swift; sourceTree = "<group>"; };
 		5BE473E029A752ED00F3A58E /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		5BEBEF8929A7235900EBBC6E /* OutputMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputMessage.swift; sourceTree = "<group>"; };
@@ -158,6 +158,7 @@
 				5BEBEF8E29A72EFE00EBBC6E /* Teller.swift */,
 				5B943F5029B9A9DC00859FA7 /* Generator.swift */,
 				5B943F5A29B9B35400859FA7 /* Customer.swift */,
+				5B943F5C29B9B4FE00859FA7 /* AsyncProcess.swift */,
 				5BE473DD29A7498900F3A58E /* Protocol */,
 				5BE473DC29A7497F00F3A58E /* Enum */,
 				5BE473DE29A749B900F3A58E /* DataStructure */,
@@ -260,8 +261,6 @@
 				8E03D3BD29A8537D00CF7BF5 /* OutputMessage.swift in Sources */,
 				5BFB003229A4865100EE9F4D /* LinkedList.swift in Sources */,
 				5BFB003129A4864F00EE9F4D /* Node.swift in Sources */,
-				8E03D3BC29A8536A00CF7BF5 /* BankManager.swift in Sources */,
-				8E03D3C229A8539100CF7BF5 /* Teller.swift in Sources */,
 				8E03D3BE29A8538300CF7BF5 /* Workable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,6 +279,7 @@
 				5BEBEF8A29A7235900EBBC6E /* OutputMessage.swift in Sources */,
 				C7D65D1B259C8190005510E0 /* BankManager.swift in Sources */,
 				5BEBEF8D29A72B7600EBBC6E /* Workable.swift in Sources */,
+				5B943F5D29B9B4FE00859FA7 /* AsyncProcess.swift in Sources */,
 				5B943F4F29B9A1D200859FA7 /* Receivable.swift in Sources */,
 				5BE473E129A752ED00F3A58E /* Errors.swift in Sources */,
 				5BEBEF8F29A72EFE00EBBC6E /* Teller.swift in Sources */,
