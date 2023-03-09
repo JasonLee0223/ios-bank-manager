@@ -7,16 +7,16 @@
 
 import Foundation
 
-struct LinkedList<Value: Equatable> {
-    private(set) var head: Node<Value>?
-    private(set) var tail: Node<Value>?
+struct LinkedList<Customer> {
+    private(set) var head: Node<Customer>?
+    private(set) var tail: Node<Customer>?
     private(set) var count: Int = 0
             
-    var first: Value? {
+    var first: Customer? {
         return head?.value
     }
     
-    var last: Value? {
+    var last: Customer? {
         return tail?.value
     }
     
@@ -24,7 +24,7 @@ struct LinkedList<Value: Equatable> {
         return head == nil
     }
     
-    func node(at index: Int) -> Node<Value>? {
+    func node(at index: Int) -> Node<Customer>? {
         var currentNode = head
         var currentIndex = 0
         
@@ -36,7 +36,7 @@ struct LinkedList<Value: Equatable> {
         return currentNode
     }
     
-    mutating func push(_ value: Value) {
+    mutating func push(_ value: Customer) {
         head = Node(value: value, next: head)
         
         if tail == nil {
@@ -45,7 +45,7 @@ struct LinkedList<Value: Equatable> {
         count += 1
     }
     
-    mutating func append(_ value: Value) {
+    mutating func append(_ value: Customer) {
         guard !isEmpty else {
             push(value)
             return
@@ -56,7 +56,7 @@ struct LinkedList<Value: Equatable> {
     }
     
     @discardableResult
-    mutating func insert(_ value: Value, after node: Node<Value>) -> Node<Value> {
+    mutating func insert(_ value: Customer, after node: Node<Customer>) -> Node<Customer> {
         
         guard tail !== node else {
             append(value)
@@ -70,7 +70,7 @@ struct LinkedList<Value: Equatable> {
     }
     
     @discardableResult
-    mutating func pop() -> Value? {
+    mutating func pop() -> Customer? {
         let excludeData = head?.value
         head = head?.next
         
@@ -83,7 +83,7 @@ struct LinkedList<Value: Equatable> {
     }
     
     @discardableResult
-    mutating func remove(after node: Node<Value>) -> Value? {
+    mutating func remove(after node: Node<Customer>) -> Customer? {
         if node.next === tail {
             tail = node
         }
@@ -95,7 +95,7 @@ struct LinkedList<Value: Equatable> {
     }
     
     @discardableResult
-    mutating func removeLast() -> Value? {
+    mutating func removeLast() -> Customer? {
         guard let head = head else { return nil }
         
         guard head.next != nil else {

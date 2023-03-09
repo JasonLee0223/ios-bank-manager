@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Queue<Value: Equatable> {
-    private var queue: LinkedList = LinkedList<Value>()
+struct Queue<Customer> {
+    private var queue: LinkedList = LinkedList<Customer>()
     
     var count: Int {
         return queue.count
@@ -18,15 +18,15 @@ struct Queue<Value: Equatable> {
         return queue.isEmpty
     }
     
-    mutating func euqueue(_ item: Value) {
+    mutating func euqueue(_ item: Customer) {
         queue.append(item)
     }
     
-    mutating func dequeue() -> Value? {
+    mutating func dequeue() -> Customer? {
         return queue.pop()
     }
     
-    mutating func peek() -> Value? {
+    mutating func peek() -> Customer? {
         return queue.first
     }
     

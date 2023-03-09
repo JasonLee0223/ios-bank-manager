@@ -7,11 +7,11 @@
 
 import Foundation
 
-final class Node<Value: Equatable> {
-    let value: Value
+final class Node<Customer> {
+    let value: Customer
     var next: Node?
     
-    init(value:Value, next: Node? = nil) {
+    init(value: Customer, next: Node? = nil) {
         self.value = value
         self.next = next
     }
