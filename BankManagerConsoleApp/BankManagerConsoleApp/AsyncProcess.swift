@@ -13,7 +13,7 @@ final class AsyncProcess {
     private var customerQueue = Queue<Customer>()
     
     //MARK: - Handling Async Process
-    func topOfTop(_ tellers: [Teller], _ totalVisitCustomer: Int) {
+    func workStart(_ tellers: [Teller], _ totalVisitCustomer: Int) {
         let workGroup = DispatchGroup()
         let workQueue = DispatchQueue(label: "workQueue", attributes: .concurrent)
         
