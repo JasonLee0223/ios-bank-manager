@@ -163,12 +163,12 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
-		5B93E49B29BB188700370024 /* Entity */ = {
+		5B93E49B29BB188700370024 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				5B943F5A29B9B35400859FA7 /* Customer.swift */,
 			);
-			path = Entity;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		5B943F5929B9ABEE00859FA7 /* Requirement */ = {
@@ -244,7 +244,7 @@
 				C7694E79259C3EC00053667F /* main.swift */,
 				5B93E49929BB185F00370024 /* Manager */,
 				5B93E49A29BB187300370024 /* Helper */,
-				5B93E49B29BB188700370024 /* Entity */,
+				5B93E49B29BB188700370024 /* Model */,
 				5BE473DD29A7498900F3A58E /* Protocol */,
 				5BE473DC29A7497F00F3A58E /* Enum */,
 				5BE473DE29A749B900F3A58E /* DataStructure */,
