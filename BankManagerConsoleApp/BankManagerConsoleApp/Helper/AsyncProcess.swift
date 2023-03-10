@@ -12,7 +12,23 @@ final class AsyncProcess {
     //MARK: - Private Property
     private var customerQueue = Queue<Customer>()
     
-    //MARK: - Handling Async Process
+    //MARK: - Handling Async Process in UI Version
+    func workStart(_ tellers: [Teller]) {
+        let workGroup = DispatchGroup()
+        let workQueue = DispatchQueue(label: "workQueueOfUI", attributes: .concurrent)
+        
+        makeCustomerQueue(of: CustomerCount.minimum)
+        
+        tellers.forEach { teller in
+            workQueue.async(group: workGroup) {
+                while !self.customerQueue.isEmpty {
+                    self.work(start: teller)
+                }
+            }
+        }
+    }
+    
+    //MARK: - Handling Async Process in Console Version
     func workStart(_ tellers: [Teller], _ totalVisitCustomer: Int) {
         let workGroup = DispatchGroup()
         let workQueue = DispatchQueue(label: "workQueue", attributes: .concurrent)
@@ -20,10 +36,8 @@ final class AsyncProcess {
         var depositCustomerCount = 0
         var loanCustomerCount = 0
         
-        //TODO: - 고객 대기열 생성 - async & enqueue
         makeCustomerQueue(of: totalVisitCustomer)
         
-        //TODO: - 업무 대기열 생성 - async & dequeue
         tellers.forEach { teller in
             workQueue.async(group: workGroup) {
                 while !self.customerQueue.isEmpty {
@@ -40,7 +54,6 @@ final class AsyncProcess {
         }
         workGroup.wait()
         
-        //TODO: - 업무 완료 메세지 출력
         let totalSpendTime = calculateToLeadTimeBetween(depositCustomerCount, and: loanCustomerCount)
         OutputMessage.todayWorkDeadline(customer: totalVisitCustomer, leadTime: totalSpendTime)
     }
