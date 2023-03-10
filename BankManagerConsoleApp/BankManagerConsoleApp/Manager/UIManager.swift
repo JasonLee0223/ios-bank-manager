@@ -8,5 +8,14 @@
 import Foundation
 
 struct UIManager {
+    let generator = Generator()
+    let asyncProcess = AsyncProcess()
     
+    func touchEventAboutAddTenCustomer() {
+        
+    }
+    
+    func touchEventAboutReset() {
+        
+    }
 }
