@@ -47,14 +47,14 @@ class SubView: UIView {
     
     var waitingStackView: UIStackView = {
         let waitingStackView = UIStackView()
-        waitingStackView.axis = .horizontal
+        waitingStackView.axis = .vertical
         
         return waitingStackView
     }()
     
     var workingStackView: UIStackView = {
         let workingStackView = UIStackView()
-        workingStackView.axis = .horizontal
+        workingStackView.axis = .vertical
         
         return workingStackView
     }()
@@ -99,7 +99,7 @@ class SubView: UIView {
             waitingStackView.leadingAnchor.constraint(equalTo: waitingScrollView.leadingAnchor),
             waitingStackView.trailingAnchor.constraint(equalTo: waitingScrollView.trailingAnchor),
             waitingStackView.bottomAnchor.constraint(equalTo: waitingScrollView.bottomAnchor),
-            waitingStackView.heightAnchor.constraint(equalTo: waitingScrollView.heightAnchor)
+            waitingStackView.widthAnchor.constraint(equalTo: waitingScrollView.widthAnchor),
         ])
         
         workingStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -108,7 +108,7 @@ class SubView: UIView {
             workingStackView.leadingAnchor.constraint(equalTo: workingScrollView.leadingAnchor),
             workingStackView.trailingAnchor.constraint(equalTo: workingScrollView.trailingAnchor),
             workingStackView.bottomAnchor.constraint(equalTo: workingScrollView.bottomAnchor),
-            workingStackView.heightAnchor.constraint(equalTo: workingScrollView.heightAnchor)
+            workingStackView.widthAnchor.constraint(equalTo: workingScrollView.widthAnchor)
         ])
     }
 }
