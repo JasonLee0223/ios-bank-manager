@@ -81,9 +81,9 @@
 1. 은행이 오픈하지 않았지만 고객이 먼저 와서 기다리는 경우 이미 대기열이 생성되는 경우
 2. 은행이 오픈한 뒤 고객이 방문하여 대기열이 생성되는 경우
 
-`DispatchQueue`를 사용하게 된다면 공유자원(고객 대기열 - Queue)에 접근하여 global()로 cucurrenct하게 처리되는 Thread에 aync로 처리하는 부분은 동일하지만   
-2번의 경우와 같이 enqueue와 dequeue가 동시에 일어나는 방법으로 처리하고 싶었다.   
-아래는 시도해보았던 코드이다.
+`DispatchQueue`를 사용하게 된다면 공유자원(고객 대기열 - Queue)에 접근하여 global()로 cucurrenct하게 처리되는   
+Thread에 aync로 처리하는 부분은 동일하지만 2번의 경우와 같이 enqueue와 dequeue가   
+동시에 일어나는 방법으로 처리하고 싶었다. 아래는 시도해보았던 코드이다.
 
 ```Swift
 //MARK: - 고객 대기열 생성 - async & enqueue
