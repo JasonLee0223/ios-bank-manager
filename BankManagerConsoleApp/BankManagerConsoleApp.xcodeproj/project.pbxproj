@@ -30,6 +30,8 @@
 		5B7CCF0429BE59840029FE9B /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60BCCC29A4541C00595FA2 /* Node.swift */; };
 		5B7CCF0529BE59870029FE9B /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFB001529A454B500EE9F4D /* LinkedList.swift */; };
 		5B7CCF0629BE598A0029FE9B /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60BCCE29A4793500595FA2 /* Queue.swift */; };
+		5B7CCF0829BE60310029FE9B /* SendCustomerInfoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7CCF0729BE60310029FE9B /* SendCustomerInfoDelegate.swift */; };
+		5B7CCF0929BE60470029FE9B /* SendCustomerInfoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7CCF0729BE60310029FE9B /* SendCustomerInfoDelegate.swift */; };
 		5B93E49629BAFB6200370024 /* SubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B93E49529BAFB6200370024 /* SubView.swift */; };
 		5B93E49829BB185700370024 /* UIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B93E49729BB185700370024 /* UIManager.swift */; };
 		5B943F4F29B9A1D200859FA7 /* Receivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B943F4E29B9A1D200859FA7 /* Receivable.swift */; };
@@ -80,6 +82,7 @@
 		5B7CCEDE29BA47730029FE9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B7CCEE429BA491B0029FE9B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		5B7CCEE729BDABEA0029FE9B /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		5B7CCF0729BE60310029FE9B /* SendCustomerInfoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCustomerInfoDelegate.swift; sourceTree = "<group>"; };
 		5B93E49529BAFB6200370024 /* SubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubView.swift; sourceTree = "<group>"; };
 		5B93E49729BB185700370024 /* UIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIManager.swift; sourceTree = "<group>"; };
 		5B943F4E29B9A1D200859FA7 /* Receivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receivable.swift; sourceTree = "<group>"; };
@@ -211,6 +214,7 @@
 			children = (
 				5BEBEF8C29A72B7600EBBC6E /* Workable.swift */,
 				5B943F4E29B9A1D200859FA7 /* Receivable.swift */,
+				5B7CCF0729BE60310029FE9B /* SendCustomerInfoDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -403,6 +407,7 @@
 				5B7CCEFD29BE59680029FE9B /* Workable.swift in Sources */,
 				5B7CCF0629BE598A0029FE9B /* Queue.swift in Sources */,
 				5B7CCEFB29BE595D0029FE9B /* Generator.swift in Sources */,
+				5B7CCF0929BE60470029FE9B /* SendCustomerInfoDelegate.swift in Sources */,
 				5B7CCEFE29BE596B0029FE9B /* Receivable.swift in Sources */,
 				5B7CCEF829BE59500029FE9B /* UIManager.swift in Sources */,
 				5B7CCEFA29BE595A0029FE9B /* Teller.swift in Sources */,
@@ -442,6 +447,7 @@
 				5B7CCEE829BDABEA0029FE9B /* Customer.swift in Sources */,
 				5B943F4F29B9A1D200859FA7 /* Receivable.swift in Sources */,
 				5BE473E129A752ED00F3A58E /* Errors.swift in Sources */,
+				5B7CCF0829BE60310029FE9B /* SendCustomerInfoDelegate.swift in Sources */,
 				5BEBEF8F29A72EFE00EBBC6E /* Teller.swift in Sources */,
 				5B943F5729B9AB9800859FA7 /* WorkType.swift in Sources */,
 				5B943F5129B9A9DC00859FA7 /* Generator.swift in Sources */,
