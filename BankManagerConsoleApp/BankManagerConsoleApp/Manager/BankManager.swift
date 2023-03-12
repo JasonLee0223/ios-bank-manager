@@ -33,5 +33,6 @@ struct BankManager: Receivable {
         let totalVisitCustomer = generator.randomCustomerCount()
 
         asyncProcessor.workStart(tellers, totalVisitCustomer)
+//        asyncProcessor.workStart(tellers)
     }
 }
