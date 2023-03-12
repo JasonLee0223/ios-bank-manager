@@ -54,7 +54,13 @@ class MainView: UIView {
     }()
 
     var addTenCustomer: UIButton = {
-        let addTenCustomer = UIButton()
+        let addTenCustomer = UIButton(type: .custom, primaryAction: UIAction(handler: {  _ in
+            let uiManager = UIManager()
+            weak var delegate: SendCustomerInfoDelegate?
+            
+            uiManager.touchEventAboutAddTenCustomer()
+            delegate?.sendCustomerInfo()
+        }))
         addTenCustomer.setTitle("고객 10명 추가", for: .normal)
         addTenCustomer.setTitleColor(.systemBlue, for: .normal)
 
