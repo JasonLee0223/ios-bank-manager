@@ -9,6 +9,9 @@ import UIKit
 
 class SubView: UIView {
     
+    //MARK: - Private Property
+    let uiManager = UIManager()
+    
     //MARK: - initialize
     override init(frame: CGRect) {
         super.init(frame: frame)
