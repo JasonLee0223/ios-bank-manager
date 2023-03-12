@@ -1,7 +1,13 @@
 # iOS-Bank-Manager
 
-🏃🏻🏃🏻‍♂️💨 **프로젝트 기간:** `23.02.20` ~ `23.03.10`
+🏃🏻🏃🏻‍♂️💨 **프로젝트 기간:** `23.02.20` ~ `23.03.10`   
 
+<a href ="## 🔖 역할 분배">🔖 역할 분배</a>   
+<a href ="## Step1 - 큐(Queue)타입 구현">Step1 - 큐(Queue)타입 구현</a>   
+<a href ="## Step2 - 타입 구현 및 콘솔앱 구현">Step2 - 타입 구현 및 콘솔앱 구현</a>   
+<a href ="Step3 - 다중 처리">Step3 - 다중 처리</a>   
+
+---
 ## 🔖 역할 분배
 ### 💻 Console Version
 |Manager|역할|
@@ -37,5 +43,108 @@
 |LinkedList|- Node를 연결된 데이터 구조|
 |Queue|- LinkedList형태를 인스턴스화하여 사용할 수 있도록 정의|
 
-
 ### 📱 UI Application Version
+
+## Step1 - 큐(Queue)타입 구현
+은행에 도착한 고객이 임시로 대기할 큐(Queue) 타입을 직접 구현한다.   
+- Queue 타입 구현을 위한 Linked-List 타입을 직접 구현한다.
+- 다양한 데이터를 취급할 수 있도록 Generic 기능을 활용한다.
+- UnitTest를 통해 동작을 검증한다.
+  - Enqueue, Dequeue, Clear, Peek, isEmpty
+---
+
+## Step2 - 타입 구현 및 콘솔앱 구현
+- 은행에는 n명의 은행원(Teller)이 근무하며 n명의 고객이 업무처리를 위해 대기한다.
+  - Step1에서 구현한 Queue 타입을 활용한다.
+- 모든 고객의 업무가 끝나면 은행 업무를 마감한다.
+- 업무를 마감할 때 아래와 같은 메시지를 출력한다.
+  - "업무가 마감되었습니다. 오늘 업무를 처리한 고객은 총 XX명이며, 총 업무시간은 XX초입니다."
+  - 은행원이 업무를 처리하는데 걸리는 시간은 0.7초이다.
+    - 한 번에 처리할 수 있는 고객은 한 명이다
+  - 업무를 처리하면 아래와 같은 메시지를 출력한다.
+    - "3번 고객 업무 시작"
+  - 고객의 업무를 처리하면 아래와 같은 메시지를 출력한다.
+    - "5번 고객 업무 완료"
+---
+
+## Step3 - 다중 처리
+- 은행원은 총 3명이 근무한다.
+  - 2명은 예금업무, 1명은 대출업무를 처리한다.
+- 한 명의 은행원은 한 명의 고객을 응대할 수 있다.
+  - 예금 소요시간: 0.7초, 대출 소요시간: 1.1초
+- 업무처리 시 아래와 같은 메시지를 출력한다.
+  - 업무시작 시: "3번 고객 대출업무 시작"
+  - 업무처리 완료 시: "11번 고객 예금업무 완료"
+
+### 🚀 적용하려고 노력해본 점
+은행(Bank)라는 객체의 관점으로 추상화해 보았을 떄 2가지 상황이 고려되었다.   
+1. 은행이 오픈하지 않았지만 고객이 먼저 와서 기다리는 경우 이미 대기열이 생성되는 경우
+2. 은행이 오픈한 뒤 고객이 방문하여 대기열이 생성되는 경우
+
+`DispatchQueue`를 사용하게 된다면 공유자원(고객 대기열 - Queue)에 접근하여 global()로 cucurrenct하게 처리되는 Thread에 aync로 처리하는 부분은 동일하지만   
+2번의 경우와 같이 enqueue와 dequeue가 동시에 일어나는 방법으로 처리하고 싶었다.   
+아래는 시도해보았던 코드이다.
+
+```Swift
+//MARK: - 고객 대기열 생성 - async & enqueue
+makeCustomerQueue(of: totalVisitCustomer)
+
+//MARK: - 업무 대기열 생성 - async & dequeue
+tellers.forEach { teller in
+    workQueue.async(group: workGroup) {
+        while !self.customerQueue.isEmpty {
+            self.work(start: teller)
+        }
+    }
+}
+workGroup.wait()
+```
+```Swift
+//MARK: - 고객 명단 생성
+private func makeCustomerQueue(of totalCustomerCount: Int) {
+    for waitingNumber in CustomerCount.defaultCustomer...totalCustomerCount {
+        let randomAssignToCustomerOfWorkType = makeRandomWorkType()
+        let customer = Customer(waitingNumber: waitingNumber, workType: randomAssignToCustomerOfWorkType)
+        
+        customerQueue.euqueue(customer)
+    }
+}
+
+private func makeRandomWorkType() -> WorkType {
+    let allWorkType = [WorkType.deposit, WorkType.loan].shuffled()
+    
+    guard let randomAssignToCustomerOfWorkType = allWorkType.first else {
+        return .deposit
+    }
+    return randomAssignToCustomerOfWorkType
+}
+
+//MARK: - 은행원이 대기열을 가져간다.
+private func work(start teller: Teller) {
+    let depositSemaphore = DispatchSemaphore(value: 2)
+    let loanSemaphore = DispatchSemaphore(value: 1)
+    
+    switch teller.identifier {
+    case .deposit:
+        depositSemaphore.wait()
+        guard let finishCustomer = customerQueue.dequeue() else {
+            return
+        }
+        teller.spendTime(of: finishCustomer)
+        depositSemaphore.signal()
+    case .loan:
+        loanSemaphore.wait()
+        guard let finishCustomer = customerQueue.dequeue() else {
+            return
+        }
+        teller.spendTime(of: finishCustomer)
+        loanSemaphore.signal()
+    }
+}
+```
+하지만 위와 같이 enqueue와 dequeue를 동시에 aync(비동기)로 처리하다보니 Queue가 비어질 때까지 반복문을 도는 과정에서   
+enqueue를 통해 Queue의 대기열이 생성되는 과정에 `0`으로 처리되는 부분을 확인하였고 dequeue를 처리하는 부분이   
+더 빠르게 동작하여 `group.wait()` 메서드를 통과하여 main이 바로 실행되어 버리는 상황을 계속 확인하게 되었다.   
+하여 enqueue를 통해 먼저 대기열을 만들어주고 dequeue를 통해 접근하도록 변경하여 처음 2가지 경우의 수에서 1번째 경우로 선택하여 리펙토링하여 진행하였다.
+
+---
