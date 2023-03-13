@@ -13,19 +13,10 @@ final class AsyncProcess {
     private var customerQueue = Queue<Customer>()
     
     //MARK: - Handling Async Process in UI Version
-    func workStart(_ tellers: [Teller]) {
-        let workGroup = DispatchGroup()
-        let workQueue = DispatchQueue(label: "workQueueOfUI", attributes: .concurrent)
-        
+    func makeCustomerQueue() -> Queue<Customer> {
         makeCustomerQueue(of: CustomerCount.minimum)
         
-        tellers.forEach { teller in
-            workQueue.async(group: workGroup) {
-                while !self.customerQueue.isEmpty {
-                    self.work(start: teller)
-                }
-            }
-        }
+        return customerQueue
     }
     
     //MARK: - Handling Async Process in Console Version
@@ -63,7 +54,6 @@ final class AsyncProcess {
         for waitingNumber in CustomerCount.defaultCustomer...totalCustomerCount {
             let randomAssignToCustomerOfWorkType = makeRandomWorkType()
             let customer = Customer(waitingNumber: waitingNumber, workType: randomAssignToCustomerOfWorkType)
-            
             customerQueue.euqueue(customer)
         }
     }
