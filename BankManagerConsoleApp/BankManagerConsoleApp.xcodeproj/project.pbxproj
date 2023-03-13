@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B3BD37D29BEA51B00A0EC83 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE473E029A752ED00F3A58E /* Errors.swift */; };
+		5B3BD37E29BEA52800A0EC83 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE473E029A752ED00F3A58E /* Errors.swift */; };
 		5B7CCED129BA47720029FE9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7CCED029BA47720029FE9B /* AppDelegate.swift */; };
 		5B7CCED329BA47720029FE9B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7CCED229BA47720029FE9B /* SceneDelegate.swift */; };
 		5B7CCED529BA47720029FE9B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7CCED429BA47720029FE9B /* ViewController.swift */; };
@@ -22,7 +24,6 @@
 		5B7CCEFC29BE59630029FE9B /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7CCEE729BDABEA0029FE9B /* Customer.swift */; };
 		5B7CCEFD29BE59680029FE9B /* Workable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBEF8C29A72B7600EBBC6E /* Workable.swift */; };
 		5B7CCEFE29BE596B0029FE9B /* Receivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B943F4E29B9A1D200859FA7 /* Receivable.swift */; };
-		5B7CCEFF29BE59710029FE9B /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE473E029A752ED00F3A58E /* Errors.swift */; };
 		5B7CCF0029BE59750029FE9B /* WorkList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE473D829A7494F00F3A58E /* WorkList.swift */; };
 		5B7CCF0129BE59780029FE9B /* WorkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B943F5629B9AB9800859FA7 /* WorkType.swift */; };
 		5B7CCF0229BE597C0029FE9B /* CustomCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B943F5229B9AB6F00859FA7 /* CustomCount.swift */; };
@@ -52,7 +53,6 @@
 		8E03D3BD29A8537D00CF7BF5 /* OutputMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBEF8929A7235900EBBC6E /* OutputMessage.swift */; };
 		8E03D3BE29A8538300CF7BF5 /* Workable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEBEF8C29A72B7600EBBC6E /* Workable.swift */; };
 		8E03D3BF29A8538500CF7BF5 /* WorkList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE473D829A7494F00F3A58E /* WorkList.swift */; };
-		8E03D3C129A8538C00CF7BF5 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE473E029A752ED00F3A58E /* Errors.swift */; };
 		8E60BCCD29A4541C00595FA2 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60BCCC29A4541C00595FA2 /* Node.swift */; };
 		8E60BCCF29A4793500595FA2 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60BCCE29A4793500595FA2 /* Queue.swift */; };
 		C7694E7A259C3EC00053667F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7694E79259C3EC00053667F /* main.swift */; };
@@ -403,7 +403,7 @@
 				5B7CCED329BA47720029FE9B /* SceneDelegate.swift in Sources */,
 				5B7CCF0329BE597F0029FE9B /* OutputMessage.swift in Sources */,
 				5B93E49629BAFB6200370024 /* SubView.swift in Sources */,
-				5B7CCEFF29BE59710029FE9B /* Errors.swift in Sources */,
+				5B3BD37E29BEA52800A0EC83 /* Errors.swift in Sources */,
 				5B7CCEFD29BE59680029FE9B /* Workable.swift in Sources */,
 				5B7CCF0629BE598A0029FE9B /* Queue.swift in Sources */,
 				5B7CCEFB29BE595D0029FE9B /* Generator.swift in Sources */,
@@ -418,11 +418,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E03D3C129A8538C00CF7BF5 /* Errors.swift in Sources */,
 				8E03D3BF29A8538500CF7BF5 /* WorkList.swift in Sources */,
 				5BFB002929A485F200EE9F4D /* QueueTest.swift in Sources */,
 				5BFB003329A4865300EE9F4D /* Queue.swift in Sources */,
 				8E03D3BD29A8537D00CF7BF5 /* OutputMessage.swift in Sources */,
+				5B3BD37D29BEA51B00A0EC83 /* Errors.swift in Sources */,
 				5BFB003229A4865100EE9F4D /* LinkedList.swift in Sources */,
 				5BFB003129A4864F00EE9F4D /* Node.swift in Sources */,
 				8E03D3BE29A8538300CF7BF5 /* Workable.swift in Sources */,

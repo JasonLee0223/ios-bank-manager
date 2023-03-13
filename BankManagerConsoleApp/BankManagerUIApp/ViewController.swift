@@ -15,8 +15,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLayout()
-        
-        
+        mainView.delegate = self
     }
     
     private func configureLayout() {
@@ -40,3 +39,29 @@ class ViewController: UIViewController {
     }
 }
 
+extension ViewController: SendCustomerInfoDelegate {
+    func sendCustomerInfo() {
+        var customQueue = UIManager().touchEventAboutAddTenCustomer()
+        
+        (1...CustomerCount.minimum).forEach { index in
+            guard let currentCustomer = customQueue.dequeue() else {
+                return
+            }
+
+            let _: UILabel = {
+                let customerInfoLabel = UILabel()
+                customerInfoLabel.text = "\(currentCustomer.waitingNumber) - \(currentCustomer.workType)"
+                customerInfoLabel.textAlignment = .center
+                customerInfoLabel.font = .systemFont(ofSize: 20, weight: .regular)
+
+                if currentCustomer.workType == WorkType.loan {
+                    customerInfoLabel.textColor = .systemPurple
+                    subView.workingStackView.addArrangedSubview(customerInfoLabel)
+                } else {
+                    subView.waitingStackView.addArrangedSubview(customerInfoLabel)
+                }
+                return customerInfoLabel
+            }()
+        }
+    }
+}

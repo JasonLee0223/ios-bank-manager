@@ -9,20 +9,15 @@ import UIKit
 
 class SubView: UIView {
     
-    //MARK: - Private Property
-    let uiManager = UIManager()
-    
     //MARK: - initialize
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureLayout()
-        addLabels()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configureLayout()
-        addLabels()
     }
     
     //MARK: - View Component
@@ -36,14 +31,12 @@ class SubView: UIView {
     
     var waitingScrollView: UIScrollView = {
         let waitingScrollView = UIScrollView()
-        waitingScrollView.backgroundColor = .systemBlue
         
         return waitingScrollView
     }()
     
     var workingScrollView: UIScrollView = {
         let workingScrollView = UIScrollView()
-        workingScrollView.backgroundColor = .systemOrange
         
         return workingScrollView
     }()
@@ -61,22 +54,6 @@ class SubView: UIView {
         
         return workingStackView
     }()
-    
-    //MARK: - UI Component
-    private func addLabels() {
-        (0..<5).map { index in
-            let label: UILabel = {
-                let label = UILabel()
-                label.text = "Test Text" + String(index)
-                label.textAlignment = .center
-                label.font = .systemFont(ofSize: 15, weight: .regular)
-                
-                return label
-            }()
-            return label
-        }
-        .forEach(waitingStackView.addArrangedSubview)
-    }
     
     //MARK: - Layout
     private func configureLayout() {

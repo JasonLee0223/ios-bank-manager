@@ -9,10 +9,13 @@ import UIKit
 
 class MainView: UIView {
     
+    weak var delegate: SendCustomerInfoDelegate?
+    
     //MARK: - initialize
     override init(frame: CGRect) {
         super.init(frame: frame)
         configurLayout()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -33,7 +36,7 @@ class MainView: UIView {
         let userInterfaceStackView = UIStackView()
         userInterfaceStackView.axis = .horizontal
         userInterfaceStackView.distribution = .fillEqually
-
+        
         return userInterfaceStackView
     }()
     
@@ -49,17 +52,13 @@ class MainView: UIView {
         let statusStackView = UIStackView()
         statusStackView.axis = .horizontal
         statusStackView.distribution = .fillEqually
-
+        
         return statusStackView
     }()
 
-    var addTenCustomer: UIButton = {
+    lazy var addTenCustomer: UIButton = {
         let addTenCustomer = UIButton(type: .custom, primaryAction: UIAction(handler: {  _ in
-            let uiManager = UIManager()
-            weak var delegate: SendCustomerInfoDelegate?
-            
-            uiManager.touchEventAboutAddTenCustomer()
-            delegate?.sendCustomerInfo()
+            self.delegate?.sendCustomerInfo()
         }))
         addTenCustomer.setTitle("고객 10명 추가", for: .normal)
         addTenCustomer.setTitleColor(.systemBlue, for: .normal)
