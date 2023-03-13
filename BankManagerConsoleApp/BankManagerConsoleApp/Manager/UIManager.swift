@@ -11,9 +11,8 @@ struct UIManager {
     let generator = Generator()
     let asyncProcess = AsyncProcess()
     
-    func touchEventAboutAddTenCustomer() {
-        let tellers = generator.assignTellers()
-        asyncProcess.workStart(tellers)
+    func touchEventAboutAddTenCustomer() -> Queue<Customer> {
+        return asyncProcess.makeCustomerQueue()
     }
     
     func touchEventAboutReset() {
