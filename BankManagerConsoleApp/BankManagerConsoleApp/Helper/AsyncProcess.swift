@@ -13,10 +13,8 @@ final class AsyncProcess {
     private var customerQueue = Queue<Customer>()
     
     //MARK: - Handling Async Process in UI Version
-    func makeCustomerQueue() -> Queue<Customer> {
-        makeCustomerQueue(of: CustomerCount.minimum)
-        
-        return customerQueue
+    func makeCustomerQueue() -> [Customer] {
+        return makeCustomerQueue(of: CustomerCount.minimum)
     }
     
     //MARK: - Handling Async Process in Console Version
@@ -50,12 +48,17 @@ final class AsyncProcess {
     }
     
     //MARK: - 고객 명단 생성
-    private func makeCustomerQueue(of totalCustomerCount: Int) {
+    @discardableResult
+    private func makeCustomerQueue(of totalCustomerCount: Int) -> [Customer] {
+        var customersInformation = [Customer]()
+        
         for waitingNumber in CustomerCount.defaultCustomer...totalCustomerCount {
             let randomAssignToCustomerOfWorkType = makeRandomWorkType()
             let customer = Customer(waitingNumber: waitingNumber, workType: randomAssignToCustomerOfWorkType)
             customerQueue.euqueue(customer)
+            customersInformation.append(customer)
         }
+        return customersInformation
     }
     
     private func makeRandomWorkType() -> WorkType {
