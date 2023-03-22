@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B33A4E329CB2A3C00998204 /* TimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B33A4E229CB2A3C00998204 /* TimerState.swift */; };
 		5B3BD37D29BEA51B00A0EC83 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE473E029A752ED00F3A58E /* Errors.swift */; };
 		5B3BD37E29BEA52800A0EC83 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE473E029A752ED00F3A58E /* Errors.swift */; };
 		5B7CCED129BA47720029FE9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7CCED029BA47720029FE9B /* AppDelegate.swift */; };
@@ -70,6 +71,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5B33A4E229CB2A3C00998204 /* TimerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerState.swift; sourceTree = "<group>"; };
 		5B7CCECE29BA47720029FE9B /* BankManagerUIApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BankManagerUIApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B7CCED029BA47720029FE9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B7CCED229BA47720029FE9B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 		5BE473DC29A7497F00F3A58E /* Enum */ = {
 			isa = PBXGroup;
 			children = (
+				5B33A4E229CB2A3C00998204 /* TimerState.swift */,
 				5BE473E029A752ED00F3A58E /* Errors.swift */,
 				5B943F5929B9ABEE00859FA7 /* Requirement */,
 			);
@@ -441,6 +444,7 @@
 				5B7CCEE829BDABEA0029FE9B /* Customer.swift in Sources */,
 				5B943F4F29B9A1D200859FA7 /* Receivable.swift in Sources */,
 				5BE473E129A752ED00F3A58E /* Errors.swift in Sources */,
+				5B33A4E329CB2A3C00998204 /* TimerState.swift in Sources */,
 				5B7CCF0829BE60310029FE9B /* SendCustomerInfoDelegate.swift in Sources */,
 				5BEBEF8F29A72EFE00EBBC6E /* Teller.swift in Sources */,
 				5B943F5729B9AB9800859FA7 /* WorkType.swift in Sources */,
