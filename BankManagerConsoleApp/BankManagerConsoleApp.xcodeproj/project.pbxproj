@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5B33A4E329CB2A3C00998204 /* TimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B33A4E229CB2A3C00998204 /* TimerState.swift */; };
 		5B33A4E529CB2ABB00998204 /* ScheduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B33A4E429CB2ABB00998204 /* ScheduleManager.swift */; };
+		5B33A4E729CB2B0800998204 /* CustomTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B33A4E629CB2B0800998204 /* CustomTimer.swift */; };
 		5B3BD37D29BEA51B00A0EC83 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE473E029A752ED00F3A58E /* Errors.swift */; };
 		5B3BD37E29BEA52800A0EC83 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE473E029A752ED00F3A58E /* Errors.swift */; };
 		5B7CCED129BA47720029FE9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7CCED029BA47720029FE9B /* AppDelegate.swift */; };
@@ -74,6 +75,7 @@
 /* Begin PBXFileReference section */
 		5B33A4E229CB2A3C00998204 /* TimerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerState.swift; sourceTree = "<group>"; };
 		5B33A4E429CB2ABB00998204 /* ScheduleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleManager.swift; sourceTree = "<group>"; };
+		5B33A4E629CB2B0800998204 /* CustomTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTimer.swift; sourceTree = "<group>"; };
 		5B7CCECE29BA47720029FE9B /* BankManagerUIApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BankManagerUIApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B7CCED029BA47720029FE9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B7CCED229BA47720029FE9B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				5BEBEF8C29A72B7600EBBC6E /* Workable.swift */,
 				5B943F4E29B9A1D200859FA7 /* Receivable.swift */,
 				5B7CCF0729BE60310029FE9B /* SendCustomerInfoDelegate.swift */,
+				5B33A4E629CB2B0800998204 /* CustomTimer.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				5B943F5329B9AB6F00859FA7 /* CustomCount.swift in Sources */,
 				8E60BCCD29A4541C00595FA2 /* Node.swift in Sources */,
 				C7694E7A259C3EC00053667F /* main.swift in Sources */,
+				5B33A4E729CB2B0800998204 /* CustomTimer.swift in Sources */,
 				5BFB001629A454B500EE9F4D /* LinkedList.swift in Sources */,
 				5BE473D929A7494F00F3A58E /* WorkList.swift in Sources */,
 				5BEBEF8A29A7235900EBBC6E /* OutputMessage.swift in Sources */,
