@@ -8,5 +8,9 @@
 import Foundation
 
 protocol SendCustomerInfoDelegate: AnyObject {
-    func sendCustomerInfo()
+    func sendCustomersInfo() -> [Customer]
+    func makeCustomerLabel(customers: [Customer], completion: @escaping (Customer) -> Void)
+    
+    func drawinigWorkingLabel(of customer: Customer, completion: @escaping () -> Void)
+    func removeWaitingCustomerLabel(of customer: Customer) -> Bool
 }
