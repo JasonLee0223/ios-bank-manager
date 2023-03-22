@@ -11,11 +11,16 @@ class ViewController: UIViewController {
     
     private lazy var mainView = MainView(frame: view.frame)
     private lazy var subView = SubView(frame: view.frame)
-
+    private var asyncManager = AsyncProcess()
+    
+    private var timerCounting: Bool = false
+    private var count: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLayout()
-        mainView.delegate = self
+        mainView.mainViewdelegate = self
+        
     }
     
     private func configureLayout() {
@@ -39,29 +44,56 @@ class ViewController: UIViewController {
     }
 }
 
+//MARK: - MainView Delegate Method
 extension ViewController: SendCustomerInfoDelegate {
-    func sendCustomerInfo() {
-        var customQueue = UIManager().touchEventAboutAddTenCustomer()
-        
-        (1...CustomerCount.minimum).forEach { index in
-            guard let currentCustomer = customQueue.dequeue() else {
-                return
-            }
-
-            let _: UILabel = {
+    
+    func sendCustomersInfo() -> [Customer] {
+        return asyncManager.makeCustomerQueue()
+    }
+    
+    func makeCustomerLabel(customers: [Customer],
+                           completion: @escaping (Customer) -> Void) {
+        customers.forEach { currentCustomer in
+            let customerInfoLabel : UILabel = {
                 let customerInfoLabel = UILabel()
                 customerInfoLabel.text = "\(currentCustomer.waitingNumber) - \(currentCustomer.workType)"
                 customerInfoLabel.textAlignment = .center
                 customerInfoLabel.font = .systemFont(ofSize: 20, weight: .regular)
-
+                
                 if currentCustomer.workType == WorkType.loan {
                     customerInfoLabel.textColor = .systemPurple
-                    subView.workingStackView.addArrangedSubview(customerInfoLabel)
-                } else {
-                    subView.waitingStackView.addArrangedSubview(customerInfoLabel)
                 }
+                
+                completion(currentCustomer)
+                
                 return customerInfoLabel
             }()
+            
+            DispatchQueue.main.async {
+                self.subView.waitingStackView.addArrangedSubview(customerInfoLabel)
+            }
         }
+    }
+    
+    func drawinigWorkingLabel(of customer: Customer,
+                              completion: @escaping () -> Void) {
+        let workingCustomer: UILabel = {
+            let workingCustomer = UILabel()
+            workingCustomer.text = "\(customer.waitingNumber) - \(customer.workType)"
+            workingCustomer.textAlignment = .center
+            workingCustomer.font = .systemFont(ofSize: 20, weight: .regular)
+            
+            return workingCustomer
+        }()
+        completion()
+        
+        DispatchQueue.main.async {
+            self.subView.workingStackView.addArrangedSubview(workingCustomer)
+        }
+    }
+    
+    func removeWaitingCustomerLabel(of customer: Customer) -> Bool {
+        
+        return true
     }
 }
