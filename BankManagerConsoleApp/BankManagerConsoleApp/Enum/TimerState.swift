@@ -10,6 +10,7 @@ import Foundation
 enum TimerState {
     case start
     case suspended
+    case resumed
     case canceled
     case finished
 }
