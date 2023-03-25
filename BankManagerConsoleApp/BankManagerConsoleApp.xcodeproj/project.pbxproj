@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5B33A4E329CB2A3C00998204 /* TimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B33A4E229CB2A3C00998204 /* TimerState.swift */; };
-		5B33A4E529CB2ABB00998204 /* ScheduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B33A4E429CB2ABB00998204 /* ScheduleManager.swift */; };
-		5B33A4E729CB2B0800998204 /* CustomTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B33A4E629CB2B0800998204 /* CustomTimer.swift */; };
+		5B33A4E829CB2B6000998204 /* ScheduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B33A4E429CB2ABB00998204 /* ScheduleManager.swift */; };
+		5B33A4E929CB2B6600998204 /* CustomTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B33A4E629CB2B0800998204 /* CustomTimer.swift */; };
+		5B33A4EA29CB2B6B00998204 /* TimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B33A4E229CB2A3C00998204 /* TimerState.swift */; };
 		5B3BD37D29BEA51B00A0EC83 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE473E029A752ED00F3A58E /* Errors.swift */; };
 		5B3BD37E29BEA52800A0EC83 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE473E029A752ED00F3A58E /* Errors.swift */; };
 		5B7CCED129BA47720029FE9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7CCED029BA47720029FE9B /* AppDelegate.swift */; };
@@ -397,6 +397,8 @@
 			files = (
 				5B7CCF0229BE597C0029FE9B /* CustomCount.swift in Sources */,
 				5B7CCED529BA47720029FE9B /* ViewController.swift in Sources */,
+				5B33A4EA29CB2B6B00998204 /* TimerState.swift in Sources */,
+				5B33A4E829CB2B6000998204 /* ScheduleManager.swift in Sources */,
 				5B7CCEFC29BE59630029FE9B /* Customer.swift in Sources */,
 				5B7CCF0429BE59840029FE9B /* Node.swift in Sources */,
 				5B7CCF0129BE59780029FE9B /* WorkType.swift in Sources */,
@@ -406,6 +408,7 @@
 				5B7CCF0529BE59870029FE9B /* LinkedList.swift in Sources */,
 				5B7CCED129BA47720029FE9B /* AppDelegate.swift in Sources */,
 				5B7CCED329BA47720029FE9B /* SceneDelegate.swift in Sources */,
+				5B33A4E929CB2B6600998204 /* CustomTimer.swift in Sources */,
 				5B7CCF0329BE597F0029FE9B /* OutputMessage.swift in Sources */,
 				5B93E49629BAFB6200370024 /* SubView.swift in Sources */,
 				5B3BD37E29BEA52800A0EC83 /* Errors.swift in Sources */,
@@ -441,18 +444,15 @@
 				5B943F5329B9AB6F00859FA7 /* CustomCount.swift in Sources */,
 				8E60BCCD29A4541C00595FA2 /* Node.swift in Sources */,
 				C7694E7A259C3EC00053667F /* main.swift in Sources */,
-				5B33A4E729CB2B0800998204 /* CustomTimer.swift in Sources */,
 				5BFB001629A454B500EE9F4D /* LinkedList.swift in Sources */,
 				5BE473D929A7494F00F3A58E /* WorkList.swift in Sources */,
 				5BEBEF8A29A7235900EBBC6E /* OutputMessage.swift in Sources */,
 				C7D65D1B259C8190005510E0 /* BankManager.swift in Sources */,
 				5BEBEF8D29A72B7600EBBC6E /* Workable.swift in Sources */,
-				5B33A4E529CB2ABB00998204 /* ScheduleManager.swift in Sources */,
 				5B943F5D29B9B4FE00859FA7 /* AsyncProcess.swift in Sources */,
 				5B7CCEE829BDABEA0029FE9B /* Customer.swift in Sources */,
 				5B943F4F29B9A1D200859FA7 /* Receivable.swift in Sources */,
 				5BE473E129A752ED00F3A58E /* Errors.swift in Sources */,
-				5B33A4E329CB2A3C00998204 /* TimerState.swift in Sources */,
 				5B7CCF0829BE60310029FE9B /* SendCustomerInfoDelegate.swift in Sources */,
 				5BEBEF8F29A72EFE00EBBC6E /* Teller.swift in Sources */,
 				5B943F5729B9AB9800859FA7 /* WorkType.swift in Sources */,
