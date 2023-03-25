@@ -9,20 +9,21 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    //MARK: - Private Method
+    //MARK: - Private Property
     private lazy var mainView = MainView(frame: view.frame)
     private lazy var subView = SubView(frame: view.frame)
     private var asyncManager = AsyncProcess()
     
     private var timerCounting: Bool = false
-    private var count: Int = 0
+    
+    private let repeatingSecoondsTimer = ScheduleManager()
+    private var time: Int = 0
     
     //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLayout()
         mainView.mainViewdelegate = self
-        
     }
     
     //MARK: - Configure Of Layout
@@ -49,7 +50,6 @@ class ViewController: UIViewController {
 
 //MARK: - MainView Delegate Method
 extension ViewController: SendCustomerInfoDelegate {
-    
     func sendCustomersInfo() -> [Customer] {
         return asyncManager.makeCustomerQueue()
     }
@@ -95,8 +95,42 @@ extension ViewController: SendCustomerInfoDelegate {
         }
     }
     
+    func startRepeatTimer() {
+        repeatingSecoondsTimer.start(durationSeconds: 1) {
+            DispatchQueue.main.async { [self] in
+                time += 1
+                let calculatedTime = secondsToHoursMinutesSeconds(seconds: time)
+                let makedOfficeHourSentence = makeTimeString(hours: calculatedTime.0, minutes: calculatedTime.1, seconds: calculatedTime.2)
+                print(makedOfficeHourSentence)
+                mainView.officeHours.text = "업무시간 - " + makedOfficeHourSentence
+            }
+        } completion: {
+            DispatchQueue.main.async { [self] in
+                mainView.officeHours.text = "업무 종료"
+            }
+        }
+
+    }
+    
     func removeWaitingCustomerLabel(of customer: Customer) -> Bool {
         
         return true
+    }
+}
+
+extension ViewController {
+    func secondsToHoursMinutesSeconds(seconds: Int) -> (Int, Int, Int) {
+        return ((seconds / 3600), ((seconds % 3600) / 60), ((seconds % 3600) % 60))
+    }
+    
+    func makeTimeString(hours: Int, minutes: Int, seconds: Int) -> String {
+        var timeString = ""
+        
+        timeString += String(format: "0%2d", hours)
+        timeString += " : "
+        timeString += String(format: "0%2d", minutes)
+        timeString += " : "
+        timeString += String(format: "0%2d", seconds)
+        return timeString
     }
 }
