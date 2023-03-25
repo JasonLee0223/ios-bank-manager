@@ -8,14 +8,13 @@
 import UIKit
 
 class MainView: UIView {
-    
+
     weak var mainViewdelegate: SendCustomerInfoDelegate?
     
     //MARK: - initialize
     override init(frame: CGRect) {
         super.init(frame: frame)
         configurLayout()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -61,11 +60,13 @@ class MainView: UIView {
             guard let customers = mainViewdelegate?.sendCustomersInfo() else {
                 return
             }
-            
+            //MARK: - 대기 중 영역에 라벨을 생성한다.
             mainViewdelegate?.makeCustomerLabel(customers: customers, completion: { [self] waitingCustomer in
                 
                 //MARK: - 업무 중 영역에 라벨이 생성된다.
-                mainViewdelegate?.drawinigWorkingLabel(of: waitingCustomer, completion: {
+                mainViewdelegate?.drawinigWorkingLabel(of: waitingCustomer, completion: { [self] in
+                    //MARK: - Timer가 시작된다.
+                    mainViewdelegate?.startRepeatTimer()
                     
                     //TODO: - officeHours Label이 업데이트 된다. (ex. 00:00:01)
                     
