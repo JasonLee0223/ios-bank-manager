@@ -10,7 +10,9 @@ import Foundation
 protocol CustomTimer {
     var timerState: TimerState { get }
     
-    func start()
+    func start(durationSeconds: Double,
+               repeatingExecution: (() -> Void)?, completion:(() -> Void)?)
+    func resume()
     func suspend()
     func cancel()
 }
