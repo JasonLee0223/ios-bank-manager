@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    //MARK: - Private Method
     private lazy var mainView = MainView(frame: view.frame)
     private lazy var subView = SubView(frame: view.frame)
     private var asyncManager = AsyncProcess()
@@ -16,6 +17,7 @@ class ViewController: UIViewController {
     private var timerCounting: Bool = false
     private var count: Int = 0
     
+    //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLayout()
@@ -23,6 +25,7 @@ class ViewController: UIViewController {
         
     }
     
+    //MARK: - Configure Of Layout
     private func configureLayout() {
         self.view.addSubview(mainView)
         mainView.translatesAutoresizingMaskIntoConstraints = false
