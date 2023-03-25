@@ -11,4 +11,5 @@ enum TimerState {
     case start
     case suspended
     case canceled
+    case finished
 }
