@@ -57,26 +57,13 @@ class MainView: UIView {
     
     var action: UIAction {
         let action = UIAction { [self] _ in
-            guard let customers = mainViewdelegate?.sendCustomersInfo() else {
-                return
+            guard let customers = mainViewdelegate?.sendCustomersInfo() else { return }
+            
+            mainViewdelegate?.makeCustomerLabel(customers: customers)
+            mainViewdelegate?.drawinigWorkingLabel(of: customers)
+            
+            mainViewdelegate?.startRepeatTimer()
             }
-            //MARK: - 대기 중 영역에 라벨을 생성한다.
-            mainViewdelegate?.makeCustomerLabel(customers: customers, completion: { [self] waitingCustomer in
-                
-                //MARK: - 업무 중 영역에 라벨이 생성된다.
-                mainViewdelegate?.drawinigWorkingLabel(of: waitingCustomer, completion: { [self] in
-                    //MARK: - Timer가 시작된다.
-                    mainViewdelegate?.startRepeatTimer()
-                    
-                    //TODO: - officeHours Label이 업데이트 된다. (ex. 00:00:01)
-                    
-                    //TODO: - 업무 시간이 정해놓은 시간과 동일하면 완료 notify를 전달한다.
-                    
-                    //TODO: - 업무 시간만큼 지나면 waiting Label에서 해당 고객의 라벨이 제거되야한다.
-                    
-                })
-            })
-        }
         return action
     }
     
