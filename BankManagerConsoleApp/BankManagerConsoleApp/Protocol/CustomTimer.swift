@@ -11,7 +11,7 @@ protocol CustomTimer {
     var timerState: TimerState { get }
     
     func start(durationSeconds: Double,
-               repeatingExecution: (() -> Void)?, completion:(() -> Void)?)
+               repeatingExecution: (() -> Void)?)
     func resume()
     func suspend()
     func cancel()
