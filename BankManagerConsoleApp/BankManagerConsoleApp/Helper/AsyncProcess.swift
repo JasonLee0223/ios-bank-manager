@@ -17,6 +17,15 @@ final class AsyncProcess {
         return makeCustomerQueue(of: CustomerCount.minimum)
     }
     
+    func dequeue(in waitingCustomers: [Customer], completion: @escaping (Customer) -> Void) {
+        DispatchQueue.global().async {
+            waitingCustomers.forEach { customer in
+                completion(customer)
+                Thread.sleep(forTimeInterval: WorkType.deposit.leadTime)
+            }
+        }
+    }
+    
     //MARK: - Handling Async Process in Console Version
     func workStart(_ tellers: [Teller], _ totalVisitCustomer: Int) {
         let workGroup = DispatchGroup()
