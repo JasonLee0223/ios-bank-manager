@@ -25,8 +25,10 @@ class ViewController: UIViewController {
         configureLayout()
         mainView.mainViewdelegate = self
     }
-    
-    //MARK: - Configure Of Layout
+}
+
+//MARK: - Configure Of Layout
+extension ViewController {
     private func configureLayout() {
         self.view.addSubview(mainView)
         mainView.translatesAutoresizingMaskIntoConstraints = false
