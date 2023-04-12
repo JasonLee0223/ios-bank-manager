@@ -23,7 +23,7 @@ final class ScheduleManager: CustomTimer {
     private var timers: (repeatTimer: DispatchSourceTimer?, nonRepeatTimer: DispatchSourceTimer?) = (DispatchSource.makeTimerSource(),
                                                                                                   DispatchSource.makeTimerSource())
     //MARK: - Method
-    func start(durationSeconds: Double, repeatingExecution: (() -> Void)?, completion: (() -> Void)?) {
+    func start(durationSeconds: Double, repeatingExecution: (() -> Void)?) {
         setTimer(durationSeconds: durationSeconds, repeatingExecution: repeatingExecution, completion: completion)
         resume()
     }
