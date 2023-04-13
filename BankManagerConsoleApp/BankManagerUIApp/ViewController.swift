@@ -80,7 +80,7 @@ extension ViewController: SendCustomerInfoDelegate {
     }
     
     func drawinigWorkingLabel(customers: [Customer]) {
-        asyncManager.dequeue(in: customers) { customer in
+        asyncManager.dequeue(in: customers) { _ in
             DispatchQueue.main.async { [self] in
                 if let customerLabel = subView.waitingStackView.subviews.first {
                     subView.workingStackView.addArrangedSubview(customerLabel)
