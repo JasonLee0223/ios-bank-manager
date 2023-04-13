@@ -59,10 +59,12 @@ class MainView: UIView {
         let action = UIAction { [self] _ in
             guard let customers = mainViewdelegate?.sendCustomersInfo() else { return }
             
-            mainViewdelegate?.makeCustomerLabel(customers: customers)
-            mainViewdelegate?.drawinigWorkingLabel(of: customers)
-            
-            mainViewdelegate?.startRepeatTimer()
+            mainViewdelegate?.makeCustomerLabel(customers: customers) { [self] isComplete in
+                if isComplete {
+                    mainViewdelegate?.drawinigWorkingLabel(customers: customers)
+                }
+            }
+            mainViewdelegate?.startRepeatTimer(of: customers)
             }
         return action
     }

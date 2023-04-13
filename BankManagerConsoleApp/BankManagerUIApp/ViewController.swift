@@ -14,8 +14,9 @@ class ViewController: UIViewController {
     private lazy var subView = SubView(frame: view.frame)
     private var asyncManager = AsyncProcess()
     
-    private var timerCounting: Bool = false
+    private let myGroup = DispatchGroup()
     
+    private var timerCounting: Bool = false
     private let repeatingSecoondsTimer = ScheduleManager()
     private var time: Int = 0
     
@@ -52,73 +53,61 @@ extension ViewController {
 
 //MARK: - MainView Delegate Method
 extension ViewController: SendCustomerInfoDelegate {
+    
     func sendCustomersInfo() -> [Customer] {
         return asyncManager.makeCustomerQueue()
     }
     
-    func makeCustomerLabel(customers: [Customer],
-                           completion: @escaping (Customer) -> Void) {
-        customers.forEach { currentCustomer in
-            let customerInfoLabel : UILabel = {
-                let customerInfoLabel = UILabel()
-                customerInfoLabel.text = "\(currentCustomer.waitingNumber) - \(currentCustomer.workType)"
-                customerInfoLabel.textAlignment = .center
-                customerInfoLabel.font = .systemFont(ofSize: 20, weight: .regular)
+    func makeCustomerLabel(customers: [Customer], completion: @escaping (Bool) -> Void) {
+        DispatchQueue.main.async {
+            customers.forEach { currentCustomer in
+                let customerInfoLabel : UILabel = {
+                    let customerInfoLabel = UILabel()
+                    customerInfoLabel.text = "\(currentCustomer.waitingNumber) - \(currentCustomer.workType)"
+                    customerInfoLabel.textAlignment = .center
+                    customerInfoLabel.font = .systemFont(ofSize: 20, weight: .regular)
+                    
+                    if currentCustomer.workType == WorkType.loan {
+                        customerInfoLabel.textColor = .systemPurple
+                    }
+                    return customerInfoLabel
+                }()
                 
-                if currentCustomer.workType == WorkType.loan {
-                    customerInfoLabel.textColor = .systemPurple
-                }
-                
-                completion(currentCustomer)
-                
-                return customerInfoLabel
-            }()
-            
-            DispatchQueue.main.async {
                 self.subView.waitingStackView.addArrangedSubview(customerInfoLabel)
             }
+            completion(true)
         }
     }
     
-    func drawinigWorkingLabel(of customer: Customer,
-                              completion: @escaping () -> Void) {
-        let workingCustomer: UILabel = {
-            let workingCustomer = UILabel()
-            workingCustomer.text = "\(customer.waitingNumber) - \(customer.workType)"
-            workingCustomer.textAlignment = .center
-            workingCustomer.font = .systemFont(ofSize: 20, weight: .regular)
-            
-            return workingCustomer
-        }()
-        completion()
-        
-        DispatchQueue.main.async {
-            self.subView.workingStackView.addArrangedSubview(workingCustomer)
-        }
-    }
-    
-    func startRepeatTimer() {
-        repeatingSecoondsTimer.start(durationSeconds: 1) {
+    func drawinigWorkingLabel(customers: [Customer]) {
+        asyncManager.dequeue(in: customers) { customer in
             DispatchQueue.main.async { [self] in
-                time += 1
-                let calculatedTime = secondsToHoursMinutesSeconds(seconds: time)
-                let makedOfficeHourSentence = makeTimeString(hours: calculatedTime.0, minutes: calculatedTime.1, seconds: calculatedTime.2)
-                print(makedOfficeHourSentence)
-                mainView.officeHours.text = "업무시간 - " + makedOfficeHourSentence
-            }
-        } completion: {
-            DispatchQueue.main.async { [self] in
-                mainView.officeHours.text = "업무 종료"
+                if let customerLabel = subView.waitingStackView.subviews.first {
+                    subView.workingStackView.addArrangedSubview(customerLabel)
+                }
             }
         }
-
     }
     
-    func removeWaitingCustomerLabel(of customer: Customer) -> Bool {
+    func startRepeatTimer(of customers: [Customer]) {
+        if let customerLabel = subView.waitingStackView.subviews.first {
+            subView.waitingStackView.removeArrangedSubview(customerLabel)
+            subView.waitingStackView.removeFromSuperview()
+        }
         
-        return true
+        asyncManager.calculateAllSpendWorkTime(of: customers) { allSpendTime in
+            self.repeatingSecoondsTimer.start(durationSeconds: allSpendTime) { [self] in
+                DispatchQueue.main.async { [self] in
+                    time += 1
+                    let calculatedTime = secondsToHoursMinutesSeconds(seconds: time)
+                    let makedOfficeHourSentence = makeTimeString(hours: calculatedTime.0, minutes: calculatedTime.1, seconds: calculatedTime.2)
+                    mainView.officeHours.text = "업무시간 - " + makedOfficeHourSentence
+                }
+            }
+        }
     }
 }
+
 
 extension ViewController {
     func secondsToHoursMinutesSeconds(seconds: Int) -> (Int, Int, Int) {
