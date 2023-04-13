@@ -11,6 +11,7 @@ protocol SendCustomerInfoDelegate: AnyObject {
     func sendCustomersInfo() -> [Customer]
     func makeCustomerLabel(customers: [Customer], completion: @escaping (Bool) -> Void)
     func drawinigWorkingLabel(customers: [Customer])
-    
     func startRepeatTimer(of customers: [Customer])
+    
+    func allClear()
 }
