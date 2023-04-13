@@ -47,7 +47,6 @@ final class ScheduleManager: CustomTimer {
     }
     
     func cancel() {
-        //TODO: - 취소 (초기화 버튼 푸쉬 Action)
         timerState = .canceled
         initTimer()
     }
