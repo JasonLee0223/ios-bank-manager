@@ -26,6 +26,24 @@ final class AsyncProcess {
         }
     }
     
+    func calculateAllSpendWorkTime(of waitingCustomers: [Customer], completion: @escaping (Double) -> Void) {
+        DispatchQueue.global().async {
+            var depositCustomerCount = 0
+            var loanCustomerCount = 0
+            
+            waitingCustomers.forEach { customer in
+                switch customer.workType {
+                case .deposit:
+                    depositCustomerCount += 1
+                case .loan:
+                    loanCustomerCount += 1
+                }
+            }
+            let totalSpendTime = WorkType.deposit.leadTime * Double(depositCustomerCount) + WorkType.loan.leadTime * Double(loanCustomerCount)
+            completion(totalSpendTime)
+        }
+    }
+    
     //MARK: - Handling Async Process in Console Version
     func workStart(_ tellers: [Teller], _ totalVisitCustomer: Int) {
         let workGroup = DispatchGroup()
