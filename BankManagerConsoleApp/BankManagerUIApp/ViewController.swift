@@ -108,20 +108,17 @@ extension ViewController: SendCustomerInfoDelegate {
     }
     
     func allClear() {
-        for _ in 0...10 {
-            if let customerLabel = subView.waitingStackView.subviews.first {
-                subView.waitingStackView.removeArrangedSubview(customerLabel)
-                subView.waitingStackView.removeFromSuperview()
-            }
-            
-            if let customerLabel2 = subView.workingStackView.subviews.first {
-                subView.workingStackView.removeArrangedSubview(customerLabel2)
-                subView.workingStackView.removeFromSuperview()
-            }
+        subView.waitingStackView.subviews.forEach { view in
+            view.removeFromSuperview()
+        }
+        
+        subView.workingStackView.subviews.forEach { view in
+            view.removeFromSuperview()
         }
         
         self.repeatingSecoondsTimer.cancel()
         mainView.officeHours.text = "00:00:00"
+        time = 0
     }
 }
 
