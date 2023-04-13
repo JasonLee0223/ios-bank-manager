@@ -59,13 +59,13 @@ class MainView: UIView {
         let action = UIAction { [self] _ in
             guard let customers = mainViewdelegate?.sendCustomersInfo() else { return }
             
-            mainViewdelegate?.makeCustomerLabel(customers: customers) { [self] isComplete in
+            mainViewdelegate?.makeCustomerLabel(customers: customers) { isComplete in
                 if isComplete {
-                    mainViewdelegate?.drawinigWorkingLabel(customers: customers)
+                    self.mainViewdelegate?.drawinigWorkingLabel(customers: customers)
                 }
             }
             mainViewdelegate?.startRepeatTimer(of: customers)
-            }
+        }
         return action
     }
     
@@ -77,8 +77,15 @@ class MainView: UIView {
         return addTenCustomer
     }()
     
-    var reset: UIButton = {
-        let reset = UIButton()
+    var cancelAction: UIAction {
+        let action = UIAction { _ in
+            self.mainViewdelegate?.allClear()
+        }
+        return action
+    }
+    
+    lazy var reset: UIButton = {
+        let reset = UIButton(type: .custom, primaryAction: cancelAction)
         reset.setTitle("초기화", for: .normal)
         reset.setTitleColor(.systemRed, for: .normal)
         
