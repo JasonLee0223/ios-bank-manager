@@ -11,7 +11,7 @@
 ## 💻 실행결과
 |UI Version|Console Version|
 |:---:|:---:|
-|![Simulator Screen Recording - iPhone 12 pro v15 0 - 2023-04-15 at 17 03 06](https://user-images.githubusercontent.com/92699723/232199154-40f519ee-688f-48bd-8ba5-9ad22a87461d.gif)|<img src = "https://user-images.githubusercontent.com/92699723/232199798-e6d39713-7836-4059-890f-ac75ba4d8558.gif" width = 50% >|
+|![Simulator Screen Recording - iPhone 12 pro v15 0 - 2023-04-15 at 17 03 06](https://user-images.githubusercontent.com/92699723/232199154-40f519ee-688f-48bd-8ba5-9ad22a87461d.gif)|<img src = "https://user-images.githubusercontent.com/92699723/232200388-363ca041-a5fc-4c25-9312-9cb68adb327a.gif" width = 70% >|
 
 ## 🔖 역할 분배
 ### 💻 Console Version
