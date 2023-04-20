@@ -6,6 +6,7 @@
 <a href ="## Step1 - 큐(Queue)타입 구현">Step1 - 큐(Queue)타입 구현</a>   
 <a href ="## Step2 - 타입 구현 및 콘솔앱 구현">Step2 - 타입 구현 및 콘솔앱 구현</a>   
 <a href ="Step3 - 다중 처리">Step3 - 다중 처리</a>   
+<a href ="Step4 - UI 구현하기">Step4 - UI 구현하기</a>   
 
 ---
 ## 💻 실행결과
@@ -160,5 +161,110 @@ private func work(start teller: Teller) {
 enqueue를 통해 Queue의 대기열이 생성되는 과정에 `0`으로 처리되는 부분을 확인하였고 dequeue를 처리하는 부분이   
 더 빠르게 동작하여 `group.wait()` 메서드를 통과하여 main이 바로 실행되어 버리는 상황을 계속 확인하게 되었다.   
 하여 enqueue를 통해 먼저 대기열을 만들어주고 dequeue를 통해 접근하도록 변경하여 처음 2가지 경우의 수에서 1번째 경우로 선택하여 리펙토링하여 진행하였다.
+
+---
+
+## Step4 - UI 구현하기
+- Step3의 은행을 UI 앱으로 전환한다.
+- UI구성은 `코드`로만 구현하며 고객 정보를 표현할 CustomView를 구현한다.
+  - 뷰에 포함될 요소: 고객 번호, 업무 종류
+- 화면구성
+  - 업무중인 고객 리스트, 대기중인 고객 리스트, 업무 시간 타이머, 초기화 버튼, 고객 10명 추가 버튼
+- 초기화 버튼을 누르면 대기중인 고객과 타이머 모두 초기화된다.
+- 모든 업무가 끝나고 대기중인 고객이 없으면 업무시간 타이머는 멈춘다.
+
+### 🚀 적용하려고 노력해본 점
+DispatchQueue를 사용하는데 있어서 많이 실패하고 경험해보려고 노력하였다.   
+크게 몇 가지로 추렸을 때 다음과 같다.   
+1. **`DispatchQueue.main`** 에서는 UI요소와 관련된 작업의 우선순위가 높으므로 최대한 사용에 주의한다.
+2. **`DispatchQueue.global()`** 을 사용하는데 있어 제한이 있음으로 어떻게 View에서 동시적으로 느낄 수 있게할 지 고민한다.
+3. DispatchGroup을 사용하여 `enter()`, `leave()`, `wait()`에 대해 정확히 파악한다.
+
+동시성 프로그래밍을 떠나서 **`Data Binding`** 에 대해서도 고민해보았다.   
+우선 가장 많이 사용해 본 `Delegate` 패턴을 사용할 것인지 `NotificationCenter`를 활용하여 해결할 지 고민이되었다.   
+NotificationCenter는 아무래도 자주 사용해보지 않은 점과 BroadCast 방식이라 선호하지 않았고 Delegate는 많이 접해보았지만 자유자제로 익혔다고는 할 수 없었다.   
+하여 Delegate 방식으로 처리하였고 코드는 아래와 같다.   
+```Swift
+// 호출부
+var action: UIAction {
+    let action = UIAction { [self] _ in
+        guard let customers = mainViewdelegate?.sendCustomersInfo() else { return }
+        
+        mainViewdelegate?.makeCustomerLabel(customers: customers) { isComplete in
+            if isComplete {
+                self.mainViewdelegate?.drawinigWorkingLabel(customers: customers)
+            }
+        }
+        mainViewdelegate?.startRepeatTimer(of: customers)
+    }
+    return action
+}
+
+lazy var addTenCustomer: UIButton = {
+    let addTenCustomer = UIButton(type: .custom, primaryAction: action)
+    addTenCustomer.setTitle("고객 10명 추가", for: .normal)
+    addTenCustomer.setTitleColor(.systemBlue, for: .normal)
+    
+    return addTenCustomer
+}()
+```
+```Swift
+// 구현부
+func sendCustomersInfo() -> [Customer] {
+    return asyncManager.makeCustomerQueue()
+}
+
+func makeCustomerLabel(customers: [Customer], completion: @escaping (Bool) -> Void) {
+    DispatchQueue.main.async {
+        customers.forEach { currentCustomer in
+            let customerInfoLabel : UILabel = {
+                let customerInfoLabel = UILabel()
+                customerInfoLabel.text = "\(currentCustomer.waitingNumber) - \(currentCustomer.workType)"
+                customerInfoLabel.textAlignment = .center
+                customerInfoLabel.font = .systemFont(ofSize: 20, weight: .regular)
+                
+                if currentCustomer.workType == WorkType.loan {
+                    customerInfoLabel.textColor = .systemPurple
+                }
+                return customerInfoLabel
+            }()
+            
+            self.subView.waitingStackView.addArrangedSubview(customerInfoLabel)
+        }
+        completion(true)
+    }
+}
+
+func drawinigWorkingLabel(customers: [Customer]) {
+    asyncManager.dequeue(in: customers) { _ in
+        DispatchQueue.main.async { [self] in
+            if let customerLabel = subView.waitingStackView.subviews.first {
+                subView.workingStackView.addArrangedSubview(customerLabel)
+            }
+        }
+    }
+}
+
+func startRepeatTimer(of customers: [Customer]) {
+    if let customerLabel = subView.waitingStackView.subviews.first {
+        subView.waitingStackView.removeArrangedSubview(customerLabel)
+        subView.waitingStackView.removeFromSuperview()
+    }
+    
+    asyncManager.calculateAllSpendWorkTime(of: customers) { allSpendTime in
+        self.repeatingSecoondsTimer.start(durationSeconds: allSpendTime) { [self] in
+            DispatchQueue.main.async { [self] in
+                time += 1
+                let calculatedTime = secondsToHoursMinutesSeconds(seconds: time)
+                let makedOfficeHourSentence = makeTimeString(hours: calculatedTime.0, minutes: calculatedTime.1, seconds: calculatedTime.2)
+                mainView.officeHours.text = "업무시간 - " + makedOfficeHourSentence
+            }
+        }
+    }
+}
+```
+여기서 Dispatch의 global을 통해서 enter(), leave()메서드에 대해 많이 고민해보고 사용해보았지만 결국 Model에서 어떻게 넘겨줘야하는지가 중요하다는 것을 깨닫게 되었다.   
+Main Thread를 개발자가 관리할 수 없으며 Dispatch라는 Queue에 보내서 시스템에서 자원 관리에 대해 우리가 신경쓰지 않도록 한다는 부분을 몸소 느낄 수 있는 부분이었다.   
+또한 CompletionHandler를 이제 편하게 사용할 수 있게 되었다.
 
 ---
